@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d1cjki4t536gh"]
+
+[ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://scripts/player.gd" id="1_4dohe"]
+[ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
+size = Vector2(74, 26)
+
+[node name="Player" type="CharacterBody2D" unique_id=1863312260]
+script = ExtResource("1_4dohe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=75917329]
+shape = SubResource("RectangleShape2D_her8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1610706964]
+rotation = 1.5707964
+texture = ExtResource("2_r66lb")
+
+[node name="Gun" type="Marker2D" parent="." unique_id=851497368]
+unique_name_in_owner = true
+position = Vector2(38, 0)
+
+[node name="Bullet_Timer" type="Timer" parent="." unique_id=827755480]
+unique_name_in_owner = true
+wait_time = 0.3
+
+[connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
