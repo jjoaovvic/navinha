@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 const BULLET_TIME = 0.2
-const ROTATION_SPEED = 50.0
+const ROTATION_SPEED = 10.0
 const DEADZONE = 0.2
 var can_shoot = 1
 var target_angle: float
