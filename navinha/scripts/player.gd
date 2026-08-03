@@ -18,7 +18,7 @@ func shoot():
 	new_bullet.global_rotation = %Gun.global_rotation
 	add_child(new_bullet)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	get_input()
 	move_and_slide()
 	look_at(get_global_mouse_position())
