@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://de8fmjadstsp0" path="res://scripts/shooter.gd" id="1_k0pq2"]
 [ext_resource type="Texture2D" uid="uid://b7nwuv4dauvee" path="res://assets/enemyRed1.png" id="2_70ysr"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_70ysr"]
+[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/auto_destroy_component.tscn" id="4_er8mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
-size = Vector2(90, 80)
+size = Vector2(84, 93)
 
 [node name="Shooter" type="CharacterBody2D" unique_id=1135848092 node_paths=PackedStringArray("HealthComponent")]
 collision_layer = 2
@@ -18,6 +19,7 @@ rotation = -1.5707964
 texture = ExtResource("2_70ysr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1879142039]
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_lv25w")
 
 [node name="Bullet_Timer_Enemy" type="Timer" parent="." unique_id=2144780208]
@@ -28,5 +30,7 @@ unique_name_in_owner = true
 position = Vector2(48, 0)
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]
+
+[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
 
 [connection signal="timeout" from="Bullet_Timer_Enemy" to="." method="_on_bullet_timer_timeout"]

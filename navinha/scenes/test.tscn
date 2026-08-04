@@ -15,3 +15,9 @@ position = Vector2(181, 388)
 
 [node name="Shooter" parent="." unique_id=1135848092 instance=ExtResource("3_iyx0m")]
 position = Vector2(399, 512)
+
+[node name="Shooter2" parent="." unique_id=1537067025 instance=ExtResource("3_iyx0m")]
+position = Vector2(1025, 542)
+
+[node name="Pursuer2" parent="." unique_id=248712458 instance=ExtResource("2_bl13t")]
+position = Vector2(937, 186)

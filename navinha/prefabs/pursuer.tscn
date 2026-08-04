@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://x6aru3krtva5" path="res://scripts/pursuer.gd" id="1_42wrp"]
 [ext_resource type="Texture2D" uid="uid://n0xmtyktohpm" path="res://assets/ufoRed.png" id="2_wqde6"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_iyvg4"]
+[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/auto_destroy_component.tscn" id="4_0gukp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_her8w"]
-radius = 46.010868
+radius = 28.01785
 
 [node name="Pursuer" type="CharacterBody2D" unique_id=1180175329 node_paths=PackedStringArray("HealthComponent")]
 collision_layer = 2
@@ -14,9 +15,14 @@ script = ExtResource("1_42wrp")
 HealthComponent = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1843119086]
+scale = Vector2(0.5934066, 0.5934066)
 texture = ExtResource("2_wqde6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479034396]
 shape = SubResource("CircleShape2D_her8w")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_iyvg4")]
+
+[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("4_0gukp")]
+
+[connection signal="body_entered" from="AutoDestroyComponent" to="AutoDestroyComponent" method="_on_body_entered"]

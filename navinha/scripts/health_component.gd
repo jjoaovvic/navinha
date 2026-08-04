@@ -11,8 +11,8 @@ func _ready() -> void:
 		player_health.value = (health / MAX_HEALTH) * 100
 		print(player_health.value)
 
-func take_damage():
-	health -= 1
+func take_damage(damage):
+	health -= damage
 	print(health)
 	if get_parent().name == "Player":
 		player_health.value = (health / MAX_HEALTH) * 100

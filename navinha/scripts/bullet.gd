@@ -1,6 +1,8 @@
 extends Area2D
 
+@export var damage := 1
 var travelled_distance = 0
+
 
 func _physics_process(delta):
 	const SPEED = 1000
@@ -14,4 +16,4 @@ func _physics_process(delta):
 func _on_body_entered(body: Node2D) -> void:
 	queue_free()
 	if body.has_node("HealthComponent"):
-		body.get_node("HealthComponent").take_damage()
+		body.get_node("HealthComponent").take_damage(damage)
