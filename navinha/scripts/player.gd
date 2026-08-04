@@ -25,17 +25,21 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	move_and_slide()
 	#ATIVAR PARA CONTROLAR O TIRO PELO MOUSE
-	#look_at(get_global_mouse_position())
+	look_at(get_global_mouse_position())
+	
+	
+	#ATIVAR PARA CONTROLAR O TIRO PELO CONTROLE
+	#var drotation := Input.get_vector("cleft", "cright", "cup", "cdown")
+	#if drotation.length() >= DEADZONE: 
+		#target_angle = drotation.angle()
+	#if rotation != target_angle:
+		#var rotation_larp_weight: float = 1.0 - exp(-ROTATION_SPEED * delta)
+		#rotation = lerp_angle(rotation, target_angle, rotation_larp_weight)
+		
 	if Input.is_action_pressed("shoot") and can_shoot == 1:
 		shoot()
 		can_shoot = 0
 		%Bullet_Timer.start()
-	var drotation := Input.get_vector("cleft", "cright", "cup", "cdown")
-	if drotation.length() >= DEADZONE: 
-		target_angle = drotation.angle()
-	if rotation != target_angle:
-		var rotation_larp_weight: float = 1.0 - exp(-ROTATION_SPEED * delta)
-		rotation = lerp_angle(rotation, target_angle, rotation_larp_weight)
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1

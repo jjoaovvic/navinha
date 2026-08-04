@@ -18,7 +18,7 @@ texture = ExtResource("2_r66lb")
 
 [node name="Gun" type="Marker2D" parent="." unique_id=851497368]
 unique_name_in_owner = true
-position = Vector2(38, 0)
+position = Vector2(39, 0)
 
 [node name="Bullet_Timer" type="Timer" parent="." unique_id=827755480]
 unique_name_in_owner = true

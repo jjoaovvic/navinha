@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c117pmd0tujn"]
+
+[ext_resource type="Script" uid="uid://cecixqbndwokv" path="res://prefabs/health_component.gd" id="1_t2tvt"]
+
+[node name="HealthComponent" type="Node2D" unique_id=1900160482]
+script = ExtResource("1_t2tvt")

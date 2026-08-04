@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://b5076d7ftbrs5"]
 
 [ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://prefabs/player.tscn" id="1_errlg"]
+[ext_resource type="PackedScene" uid="uid://d2x3uptgj1vsm" path="res://prefabs/pursuer.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://prefabs/shooter.tscn" id="3_iyx0m"]
 
 [node name="Test" type="Node2D" unique_id=715030780]
 
 [node name="Player" parent="." unique_id=1863312260 instance=ExtResource("1_errlg")]
+unique_name_in_owner = true
 position = Vector2(567, 307)
+
+[node name="Pursuer" parent="." unique_id=1180175329 instance=ExtResource("2_bl13t")]
+position = Vector2(181, 388)
+
+[node name="Shooter" parent="." unique_id=1135848092 instance=ExtResource("3_iyx0m")]
+position = Vector2(399, 512)
