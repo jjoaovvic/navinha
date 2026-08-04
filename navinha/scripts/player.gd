@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var HealthComponent : HealthComponent
+
 const SPEED = 500.0
 const BULLET_TIME = 0.2
 const ROTATION_SPEED = 10.0

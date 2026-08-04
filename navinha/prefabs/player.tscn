@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://scripts/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
+[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_r66lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
 size = Vector2(74, 26)
 
-[node name="Player" type="CharacterBody2D" unique_id=1863312260]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r66lb"]
+bg_color = Color(0.3098112, 0.2644388, 0.21262407, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1txc5"]
+bg_color = Color(0.31772473, 0.6975672, 0.32760108, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=1863312260 node_paths=PackedStringArray("HealthComponent")]
 script = ExtResource("1_4dohe")
+HealthComponent = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=75917329]
 shape = SubResource("RectangleShape2D_her8w")
@@ -23,5 +31,21 @@ position = Vector2(39, 0)
 [node name="Bullet_Timer" type="Timer" parent="." unique_id=827755480]
 unique_name_in_owner = true
 wait_time = 0.3
+
+[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("player_health") instance=ExtResource("3_r66lb")]
+MAX_HEALTH = 10.0
+player_health = NodePath("../Player_Health")
+
+[node name="Player_Health" type="ProgressBar" parent="." unique_id=660580569]
+unique_name_in_owner = true
+top_level = true
+offset_left = 460.0
+offset_top = 561.0
+offset_right = 757.0
+offset_bottom = 588.0
+theme_override_styles/background = SubResource("StyleBoxFlat_r66lb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1txc5")
+value = 95.0
+show_percentage = false
 
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
