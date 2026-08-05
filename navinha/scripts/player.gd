@@ -12,10 +12,10 @@ var target_angle: float
 func _ready() -> void:
 	%Bullet_Timer.wait_time = BULLET_TIME
 
-func get_input():
+func get_input() -> Vector2:
 	var direction := Input.get_vector("left", "right", "up", "down")
-	velocity = direction * SPEED
-	
+	return direction
+
 func shoot():
 	const BULLET = preload("res://prefabs/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
@@ -23,9 +23,15 @@ func shoot():
 	new_bullet.global_rotation = %Gun.global_rotation
 	add_child(new_bullet)
 
+func process_movement(delta: float, move_direction: Vector2) ->void:
+	var target_velocity := move_direction * SPEED
+	velocity = velocity.lerp(target_velocity,delta*2)
+
 func _physics_process(delta: float) -> void:
-	get_input()
+	var move_direction: Vector2
+	move_direction = get_input()
 	move_and_slide()
+	process_movement(delta, move_direction)
 	#ATIVAR PARA CONTROLAR O TIRO PELO MOUSE
 	look_at(get_global_mouse_position())
 	
