@@ -6,6 +6,8 @@ const SPEED = 500.0
 const BULLET_TIME = 0.2
 const ROTATION_SPEED = 10.0
 const DEADZONE = 0.2
+const FRICTION = 2
+const ACCELERATION = 5
 var can_shoot = 1
 var target_angle: float
 
@@ -25,13 +27,17 @@ func shoot():
 
 func process_movement(delta: float, move_direction: Vector2) ->void:
 	var target_velocity := move_direction * SPEED
-	velocity = velocity.lerp(target_velocity,delta*2)
+	velocity = (velocity.lerp(target_velocity, delta * ACCELERATION) 
+		if target_velocity else
+		velocity.lerp(target_velocity, delta * FRICTION))
 
 func _physics_process(delta: float) -> void:
 	var move_direction: Vector2
 	move_direction = get_input()
 	move_and_slide()
 	process_movement(delta, move_direction)
+
+	
 	#ATIVAR PARA CONTROLAR O TIRO PELO MOUSE
 	look_at(get_global_mouse_position())
 	

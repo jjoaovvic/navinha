@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b3jaw5hqtnpe2"]
+
+[ext_resource type="Texture2D" uid="uid://kmlgg3bb8vnh" path="res://assets/blue_body_circle.png" id="1_800y6"]
+[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/auto_destroy_component.tscn" id="2_fwt2m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mqn3"]
+radius = 43.011627
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m5xh"]
+radius = 34.058773
+
+[node name="Kicker" type="CharacterBody2D" unique_id=1333401464]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=835073981]
+texture = ExtResource("1_800y6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1965061874]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1039521383]
+shape = SubResource("CircleShape2D_8mqn3")
+
+[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("2_fwt2m")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=305118655]
+shape = SubResource("CircleShape2D_8m5xh")

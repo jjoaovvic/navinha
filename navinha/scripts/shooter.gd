@@ -21,7 +21,8 @@ func shoot():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = %Enemy_Gun.global_transform
 	new_bullet.global_rotation = %Enemy_Gun.global_rotation
-	add_child(new_bullet)
+	add_sibling(new_bullet)
+	#add_child(new_bullet)
 
 
 func _on_bullet_timer_timeout() -> void:

@@ -13,9 +13,9 @@ bg_color = Color(0.3098112, 0.2644388, 0.21262407, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1txc5"]
 bg_color = Color(0.31772473, 0.6975672, 0.32760108, 1)
 
-[node name="Player" type="CharacterBody2D" unique_id=1863312260 node_paths=PackedStringArray("HealthComponent")]
+[node name="Player" type="CharacterBody2D" unique_id=1863312260]
+collision_mask = 5
 script = ExtResource("1_4dohe")
-HealthComponent = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=75917329]
 shape = SubResource("RectangleShape2D_her8w")
