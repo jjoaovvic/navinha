@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var HealthComponent : HealthComponent
-@onready var player = %Player
+@onready var player : CharacterBody2D = get_node("/root/Test/Player")
 
 
 func _physics_process(_delta: float) -> void:

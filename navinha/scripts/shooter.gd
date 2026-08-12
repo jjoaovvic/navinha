@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var player = %Player
+@onready var player = get_node("/root/Test/Player")
 const BULLET_TIME = 1.0
 var can_shoot = 0
 
@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 		shoot()
 		can_shoot = 0
 		%Bullet_Timer_Enemy.start()
-	
+
 func shoot():
 	const BULLET = preload("res://prefabs/enemy_bullet.tscn")
 	var new_bullet = BULLET.instantiate()
@@ -23,7 +23,6 @@ func shoot():
 	new_bullet.global_rotation = %Enemy_Gun.global_rotation
 	add_sibling(new_bullet)
 	#add_child(new_bullet)
-
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = 1
