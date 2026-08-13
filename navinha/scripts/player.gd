@@ -10,6 +10,7 @@ const FRICTION = 2
 const ACCELERATION = 5
 var can_shoot = 1
 var target_angle: float
+signal died
 
 func _ready() -> void:
 	%Bullet_Timer.wait_time = BULLET_TIME
@@ -36,7 +37,6 @@ func _physics_process(delta: float) -> void:
 	move_direction = get_input()
 	move_and_slide()
 	process_movement(delta, move_direction)
-
 	
 	#ATIVAR PARA CONTROLAR O TIRO PELO MOUSE
 	look_at(get_global_mouse_position())
@@ -57,3 +57,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
+
+
+func _on_health_component_health_depleted() -> void:
+	died.emit()

@@ -3,6 +3,7 @@ class_name HealthComponent
 
 @export var MAX_HEALTH := 1.0
 @export var player_health : ProgressBar
+signal health_depleted
 var health
 
 func _ready() -> void:
@@ -19,6 +20,6 @@ func take_damage(damage):
 		print(player_health.value)
 	if health == 0:
 		if get_parent().name == "Player":
-			pass;
+			health_depleted.emit()
 		else:
 			get_parent().queue_free()

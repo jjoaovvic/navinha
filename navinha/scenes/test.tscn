@@ -36,4 +36,32 @@ unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
 
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=1886090869]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=144418028]
+offset_right = 1160.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 0.22745098)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect" unique_id=323186371]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 224.0
+offset_right = 832.0
+offset_bottom = 368.0
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver" unique_id=416884649]
+offset_left = 352.0
+offset_top = 368.0
+offset_right = 760.0
+offset_bottom = 432.0
+text = "RESTART"
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]

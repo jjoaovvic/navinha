@@ -49,3 +49,4 @@ value = 95.0
 show_percentage = false
 
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
