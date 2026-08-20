@@ -9,7 +9,7 @@ const DEADZONE = 0.2
 const FRICTION = 2
 const ACCELERATION = 5
 const MAX_BOOST = 10
-const BOOST_RATE = 2
+const BOOST_RATE = 5
 const BOOST_RECOVERY_RATE = 1.5
 
 var boost_effect = 1
