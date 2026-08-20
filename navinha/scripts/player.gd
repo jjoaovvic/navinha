@@ -1,19 +1,27 @@
 extends CharacterBody2D
 
 #@export var HealthComponent : HealthComponent
-
+@onready var boost_bar = %Player_Boost
 const SPEED = 500.0
 const BULLET_TIME = 0.2
 const ROTATION_SPEED = 10.0
 const DEADZONE = 0.2
 const FRICTION = 2
 const ACCELERATION = 5
+const MAX_BOOST = 10
+const BOOST_RATE = 2
+const BOOST_RECOVERY_RATE = 1.5
+
+var boost_effect = 1
+var boost_modifier:float = 2
 var can_shoot = 1
 var target_angle: float
 signal died
 
 func _ready() -> void:
 	%Bullet_Timer.wait_time = BULLET_TIME
+	boost_bar.max_value = MAX_BOOST
+	boost_bar.value = MAX_BOOST
 
 func get_input() -> Vector2:
 	var direction := Input.get_vector("left", "right", "up", "down")
@@ -27,7 +35,7 @@ func shoot():
 	add_child(new_bullet)
 
 func process_movement(delta: float, move_direction: Vector2) ->void:
-	var target_velocity := move_direction * SPEED
+	var target_velocity:Vector2 = move_direction * SPEED * boost_effect
 	velocity = (velocity.lerp(target_velocity, delta * ACCELERATION) 
 		if target_velocity else
 		velocity.lerp(target_velocity, delta * FRICTION))
@@ -54,6 +62,13 @@ func _physics_process(delta: float) -> void:
 		shoot()
 		can_shoot = 0
 		%Bullet_Timer.start()
+		
+	if Input.is_action_pressed("boost"):
+		boost_effect = boost_modifier
+		boost_bar.value -= delta * BOOST_RATE
+	else:
+		boost_effect = 1
+		boost_bar.value += delta * BOOST_RECOVERY_RATE
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
