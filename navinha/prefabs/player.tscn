@@ -62,5 +62,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_her8w")
 value = 98.0
 show_percentage = false
 
+[node name="Boost_Timer" type="Timer" parent="." unique_id=37398328]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
+[connection signal="timeout" from="Boost_Timer" to="." method="_on_boost_timer_timeout"]

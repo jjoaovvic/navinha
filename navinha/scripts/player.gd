@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 #@export var HealthComponent : HealthComponent
 @onready var boost_bar = %Player_Boost
+@onready var boost_timer = %Boost_Timer
 const SPEED = 500.0
 const BULLET_TIME = 0.2
 const ROTATION_SPEED = 10.0
@@ -12,6 +13,7 @@ const MAX_BOOST = 10
 const BOOST_RATE = 5
 const BOOST_RECOVERY_RATE = 1.5
 
+var can_boost_recovery = true
 var boost_effect = 1
 var boost_modifier:float = 2
 var can_shoot = 1
@@ -66,13 +68,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("boost"):
 		boost_effect = boost_modifier
 		boost_bar.value -= delta * BOOST_RATE
+		can_boost_recovery = false
+		boost_timer.start()
 	else:
 		boost_effect = 1
-		boost_bar.value += delta * BOOST_RECOVERY_RATE
+		if can_boost_recovery:
+			boost_bar.value += delta * BOOST_RECOVERY_RATE
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
 
-
 func _on_health_component_health_depleted() -> void:
 	died.emit()
+
+func _on_boost_timer_timeout() -> void:
+	can_boost_recovery = true
