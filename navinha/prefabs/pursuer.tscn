@@ -24,3 +24,5 @@ shape = SubResource("CircleShape2D_her8w")
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_iyvg4")]
 
 [node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("4_0gukp")]
+
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ye4nswiyai8m"]
+
+[ext_resource type="Script" uid="uid://cbojnioyih6o8" path="res://scripts/life_pill.gd" id="1_bw8yk"]
+[ext_resource type="Texture2D" uid="uid://djt86c72fq3hj" path="res://assets/pill_red.png" id="2_npx3u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mqn3"]
+radius = 14.0
+
+[node name="Life_Pill" type="Area2D" unique_id=1418960859]
+collision_layer = 0
+script = ExtResource("1_bw8yk")
+life = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=898560127]
+texture = ExtResource("2_npx3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728687977]
+shape = SubResource("CircleShape2D_8mqn3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

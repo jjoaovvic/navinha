@@ -19,7 +19,9 @@ func take_damage(damage):
 		player_health.value = (health / MAX_HEALTH) * 100
 		print(player_health.value)
 	if health == 0:
-		if get_parent().name == "Player":
-			health_depleted.emit()
-		else:
+		health_depleted.emit()
+		if get_parent().name != "Player":
 			get_parent().queue_free()
+
+func life_gain(damage):
+	health += damage
