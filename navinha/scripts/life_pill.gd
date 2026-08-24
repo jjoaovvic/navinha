@@ -8,4 +8,4 @@ func _on_body_entered(body: Node2D) -> void:
 		collected = true
 		var health_component = body.get_node("HealthComponent")
 		health_component.life_gain(life)
-		queue_free()
+		call_deferred("queue_free")

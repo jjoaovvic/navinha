@@ -2,8 +2,9 @@ extends Node2D
 
 func _ready() -> void:
 	%GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
+	%Upgrade.process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 
@@ -26,3 +27,8 @@ func _on_player_died() -> void:
 func _on_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+
+func _on_button_2_pressed() -> void:
+	get_tree().paused = false
+	%Upgrade.visible = false

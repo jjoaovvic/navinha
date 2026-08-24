@@ -14,10 +14,8 @@ func _ready() -> void:
 
 func take_damage(damage):
 	health -= damage
-	print(health)
 	if get_parent().name == "Player":
 		player_health.value = (health / MAX_HEALTH) * 100
-		print(player_health.value)
 	if health == 0:
 		health_depleted.emit()
 		if get_parent().name != "Player":

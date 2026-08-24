@@ -13,6 +13,7 @@ const MAX_BOOST = 10
 const BOOST_RATE = 5
 const BOOST_RECOVERY_RATE = 1.5
 
+var xp:int
 var can_boost_recovery = true
 var boost_effect = 1
 var boost_modifier:float = 2
@@ -83,3 +84,11 @@ func _on_health_component_health_depleted() -> void:
 
 func _on_boost_timer_timeout() -> void:
 	can_boost_recovery = true
+
+func xp_gain(gain) -> void:
+	xp += gain
+	if xp == 5:
+		%Upgrade.visible = true
+		get_tree().paused = true
+		xp = 0
+	print(xp)

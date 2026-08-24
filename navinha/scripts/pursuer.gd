@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var xp_value:int = 0
 @export var HealthComponent : HealthComponent
 @onready var player : CharacterBody2D = get_node("/root/Test/Player")
 var drop_rate: float
@@ -12,8 +13,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_health_component_health_depleted() -> void:
+	player.xp_gain(xp_value)
 	drop_rate = randf()
-	if drop_rate > 0.5:
-		var pill = preload("res://prefabs/life_pill.tscn").instantiate()
-		pill.global_position = global_position
-		add_sibling(pill)
+	if drop_rate > 0.9:
+		call_deferred("spawn_life_pill")
+
+func spawn_life_pill() -> void:
+	var pill = preload("res://prefabs/life_pill.tscn").instantiate()
+	pill.global_position = global_position
+	add_sibling(pill)
