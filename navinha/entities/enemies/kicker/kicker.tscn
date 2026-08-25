@@ -21,7 +21,7 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1039521383]
 shape = SubResource("CircleShape2D_8mqn3")
 
-[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("2_fwt2m")]
+[node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("2_fwt2m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=305118655]
 shape = SubResource("CircleShape2D_8m5xh")

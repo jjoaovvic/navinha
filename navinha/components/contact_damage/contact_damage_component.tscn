@@ -1,22 +1,13 @@
-[gd_scene format=3 uid="uid://cn0ll7h44gywt"]
+[gd_scene load_steps=3 format=3 uid="uid://cn0ll7h44gywt"]
 
-[sub_resource type="GDScript" id="GDScript_iyvg4"]
-script/source = "extends Area2D
-
-@export var damage := 1
-
-func _on_body_entered(body: Node2D) -> void:
-	get_parent().queue_free()
-	if body.has_node(\"HealthComponent\"):
-		body.get_node(\"HealthComponent\").take_damage(damage)
-"
+[ext_resource type="Script" path="res://components/contact_damage/contact_damage_component.gd" id="1_iyvg4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mqn3"]
 radius = 30.0
 
-[node name="AutoDestroyComponent" type="Area2D" unique_id=1325836946]
+[node name="ContactDamageComponent" type="Area2D" unique_id=1325836946]
 collision_layer = 0
-script = SubResource("GDScript_iyvg4")
+script = ExtResource("1_iyvg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1181522213]
 shape = SubResource("CircleShape2D_8mqn3")

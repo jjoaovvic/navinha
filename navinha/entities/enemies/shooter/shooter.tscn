@@ -31,6 +31,6 @@ position = Vector2(48, 0)
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]
 
-[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
+[node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
 
 [connection signal="timeout" from="Bullet_Timer_Enemy" to="." method="_on_bullet_timer_timeout"]
