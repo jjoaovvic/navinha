@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c2rp3l4wgfol2"]
 
-[ext_resource type="Script" uid="uid://de8fmjadstsp0" path="res://scripts/shooter.gd" id="1_k0pq2"]
+[ext_resource type="Script" uid="uid://de8fmjadstsp0" path="res://entities/enemies/shooter/shooter.gd" id="1_k0pq2"]
 [ext_resource type="Texture2D" uid="uid://b7nwuv4dauvee" path="res://assets/enemyRed1.png" id="2_70ysr"]
-[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_70ysr"]
-[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/auto_destroy_component.tscn" id="4_er8mf"]
+[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_70ysr"]
+[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_er8mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
 size = Vector2(84, 93)
@@ -31,6 +31,6 @@ position = Vector2(48, 0)
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]
 
-[node name="AutoDestroyComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
+[node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
 
 [connection signal="timeout" from="Bullet_Timer_Enemy" to="." method="_on_bullet_timer_timeout"]

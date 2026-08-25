@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d1cjki4t536gh"]
 
-[ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://scripts/player.gd" id="1_4dohe"]
+[ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://entities/player/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
-[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_r66lb"]
+[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_r66lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
 size = Vector2(74, 26)

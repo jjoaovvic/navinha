@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 		%Bullet_Timer_Enemy.start()
 
 func shoot():
-	const BULLET = preload("res://prefabs/enemy_bullet.tscn")
+	const BULLET = preload("res://entities/projectiles/enemy_bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = %Enemy_Gun.global_transform
 	new_bullet.global_rotation = %Enemy_Gun.global_rotation
