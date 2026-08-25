@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://de8fmjadstsp0" path="res://scripts/shooter.gd" id="1_k0pq2"]
 [ext_resource type="Texture2D" uid="uid://b7nwuv4dauvee" path="res://assets/enemyRed1.png" id="2_70ysr"]
-[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health_component.tscn" id="3_70ysr"]
-[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/auto_destroy_component.tscn" id="4_er8mf"]
+[ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_70ysr"]
+[ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_er8mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
 size = Vector2(84, 93)
