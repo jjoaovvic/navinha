@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://nhlsmi0i1om5" path="res://scripts/world.gd" id="1_74lek"]
 [ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://entities/player/player.tscn" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://entities/enemies/shooter/shooter.tscn" id="3_iyx0m"]
-[ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://scripts/upgrades.gd" id="4_74lek"]
+[ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://ui/upgrade/upgrade_button.gd" id="4_74lek"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
 _data = {
