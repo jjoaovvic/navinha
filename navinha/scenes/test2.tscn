@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dxexgs4lh55b8"]
 
-[ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://prefabs/player.tscn" id="1_51wsq"]
-[ext_resource type="PackedScene" uid="uid://d2x3uptgj1vsm" path="res://prefabs/pursuer.tscn" id="2_jorxo"]
-[ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://prefabs/shooter.tscn" id="3_kamxp"]
-[ext_resource type="PackedScene" uid="uid://bkcjgkn7atxse" path="res://prefabs/box.tscn" id="4_mkcba"]
+[ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://entities/player/player.tscn" id="1_51wsq"]
+[ext_resource type="PackedScene" uid="uid://d2x3uptgj1vsm" path="res://entities/enemies/pursuer/pursuer.tscn" id="2_jorxo"]
+[ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://entities/enemies/shooter/shooter.tscn" id="3_kamxp"]
+[ext_resource type="PackedScene" uid="uid://bkcjgkn7atxse" path="res://entities/props/box/box.tscn" id="4_mkcba"]
 
 [node name="Test" type="Node2D" unique_id=715030780]
 

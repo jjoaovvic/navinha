@@ -31,7 +31,7 @@ func get_input() -> Vector2:
 	return direction
 
 func shoot():
-	const BULLET = preload("res://prefabs/bullet.tscn")
+	const BULLET = preload("res://entities/projectiles/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = %Gun.global_transform
 	new_bullet.global_rotation = %Gun.global_rotation

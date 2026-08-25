@@ -9,7 +9,7 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 
 func spawn_enemy():
-	var pursuer = preload("res://prefabs/pursuer.tscn").instantiate()
+	var pursuer = preload("res://entities/enemies/pursuer/pursuer.tscn").instantiate()
 	%Spawner.progress_ratio = randf()
 	pursuer.global_position = %Spawner.global_position
 	add_child(pursuer)

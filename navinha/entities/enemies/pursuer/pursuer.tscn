@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2x3uptgj1vsm"]
 
-[ext_resource type="Script" uid="uid://x6aru3krtva5" path="res://scripts/pursuer.gd" id="1_42wrp"]
+[ext_resource type="Script" uid="uid://x6aru3krtva5" path="res://entities/enemies/pursuer/pursuer.gd" id="1_42wrp"]
 [ext_resource type="Texture2D" uid="uid://n0xmtyktohpm" path="res://assets/ufoRed.png" id="2_wqde6"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_iyvg4"]
 [ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_0gukp"]
