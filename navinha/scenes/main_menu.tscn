@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dva2dsb0je44s"]
+
+[ext_resource type="Script" uid="uid://lha6bm3att5o" path="res://main_menu.gd" id="1_l6cm7"]
+
+[node name="Main Menu" type="Node2D" unique_id=1135845473]
+script = ExtResource("1_l6cm7")
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=2099434847]
+
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=952914719]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="StartButton" type="Button" parent="Menu" unique_id=15531541]
+offset_left = 424.0
+offset_top = 272.0
+offset_right = 680.0
+offset_bottom = 376.0
+text = "START GAME"
+
+[node name="ExitButton" type="Button" parent="Menu" unique_id=1238514121]
+offset_left = 488.0
+offset_top = 400.0
+offset_right = 608.0
+offset_bottom = 472.0
+text = "EXIT"
+
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_button_pressed"]

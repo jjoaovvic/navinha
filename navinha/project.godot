@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Navinha"
-run/main_scene="uid://b5076d7ftbrs5"
+run/main_scene="uid://dva2dsb0je44s"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
