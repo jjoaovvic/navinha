@@ -4,12 +4,12 @@ extends CharacterBody2D
 @onready var boost_bar = %Player_Boost
 @onready var boost_timer = %Boost_Timer
 const SPEED = 500.0
-const BULLET_TIME = 0.2
+var BULLET_TIME = 0.2
 const ROTATION_SPEED = 10.0
 const DEADZONE = 0.2
 const FRICTION = 2
 const ACCELERATION = 5
-const MAX_BOOST = 10
+var MAX_BOOST = 10
 const BOOST_RATE = 5
 const BOOST_RECOVERY_RATE = 1.5
 
@@ -89,6 +89,8 @@ func xp_gain(gain) -> void:
 	xp += gain
 	if xp == 5:
 		%Upgrade.visible = true
+		var world = get_parent()
+		world.set_upgrade()
 		get_tree().paused = true
 		xp = 0
 	print(xp)

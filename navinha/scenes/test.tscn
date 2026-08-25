@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://nhlsmi0i1om5" path="res://scripts/world.gd" id="1_74lek"]
 [ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://prefabs/player.tscn" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://prefabs/shooter.tscn" id="3_iyx0m"]
+[ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://scripts/upgrades.gd" id="4_74lek"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
 _data = {
@@ -55,7 +56,7 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="GameOver" unique_id=416884649]
+[node name="RestartButton" type="Button" parent="GameOver" unique_id=416884649]
 offset_left = 352.0
 offset_top = 368.0
 offset_right = 760.0
@@ -78,31 +79,37 @@ offset_right = 1152.0
 offset_bottom = 656.0
 color = Color(0.5615084, 0.75235116, 0.40646252, 0.1764706)
 
-[node name="Button2" type="Button" parent="Upgrade" unique_id=2022788881]
-offset_left = 488.0
-offset_top = 296.0
-offset_right = 688.0
-offset_bottom = 392.0
-text = "Upgrade 2"
-
-[node name="Button3" type="Button" parent="Upgrade" unique_id=1952637908]
+[node name="UpgradeButton" type="Button" parent="Upgrade" unique_id=1952637908]
+unique_name_in_owner = true
 offset_left = 224.0
 offset_top = 296.0
 offset_right = 424.0
 offset_bottom = 392.0
 text = "Upgrade 1"
+script = ExtResource("4_74lek")
 
-[node name="Button4" type="Button" parent="Upgrade" unique_id=1865930353]
-offset_left = 744.0
+[node name="UpgradeButton2" type="Button" parent="Upgrade" unique_id=1972355000]
+unique_name_in_owner = true
+offset_left = 464.0
 offset_top = 296.0
-offset_right = 944.0
+offset_right = 664.0
 offset_bottom = 392.0
-text = "Upgrade 3"
+text = "Upgrade 1"
+script = ExtResource("4_74lek")
+
+[node name="UpgradeButton3" type="Button" parent="Upgrade" unique_id=993976448]
+unique_name_in_owner = true
+offset_left = 696.0
+offset_top = 296.0
+offset_right = 896.0
+offset_bottom = 392.0
+text = "Upgrade 1"
+script = ExtResource("4_74lek")
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
-[connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Upgrade/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Upgrade/Button3" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Upgrade/Button4" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Upgrade/UpgradeButton" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
+[connection signal="pressed" from="Upgrade/UpgradeButton2" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
+[connection signal="pressed" from="Upgrade/UpgradeButton3" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
