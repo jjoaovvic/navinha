@@ -32,8 +32,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(48, 0)
 
-[node name="StatsComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("6_sc")]
-health = NodePath("../HealthComponent")
+[node name="StatsComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_sc")]
+health_component = NodePath("../HealthComponent")
 profile = ExtResource("5_stats")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]

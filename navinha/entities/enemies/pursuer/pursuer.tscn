@@ -25,8 +25,8 @@ texture = ExtResource("2_wqde6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479034396]
 shape = SubResource("CircleShape2D_her8w")
 
-[node name="StatsComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("6_sc")]
-health = NodePath("../HealthComponent")
+[node name="StatsComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_sc")]
+health_component = NodePath("../HealthComponent")
 profile = ExtResource("5_stats")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_iyvg4")]

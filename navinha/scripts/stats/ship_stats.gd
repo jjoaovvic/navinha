@@ -1,7 +1,7 @@
 extends RefCounted
 class_name ShipStats
 
-var max_health: Stat
+var health: Health
 var speed: Stat
 var acceleration: Stat
 var friction: Stat
@@ -15,7 +15,7 @@ var boost_multiplier: Stat
 static func from_profile(profile: ShipProfile) -> ShipStats:
 	var base := profile if profile != null else ShipProfile.new()
 	var stats := ShipStats.new()
-	stats.max_health = Stat.new(base.max_health)
+	stats.health = Health.new(Stat.new(base.max_health), Stat.new(base.health_regen))
 	stats.speed = Stat.new(base.speed)
 	stats.acceleration = Stat.new(base.acceleration)
 	stats.friction = Stat.new(base.friction)

@@ -4,28 +4,31 @@ class_name HealthComponent
 signal health_changed(current: float, maximum: float)
 signal health_depleted
 
-var maximum: Stat
-
-var max_health: float:
-	get:
-		return maximum.value
-
-var current_health: float = 0.0:
-	set(value):
-		current_health = clampf(value, 0.0, max_health)
-		health_changed.emit(current_health, max_health)
-		if current_health <= 0.0:
-			health_depleted.emit()
+var health: Health
 
 
 func _ready() -> void:
-	assert(maximum != null, "HealthComponent nao recebeu o Stat de vida maxima")
-	current_health = max_health
+	assert(health != null, "HealthComponent nao recebeu um Health")
+	health.changed.connect(_on_changed)
+	health.depleted.connect(_on_depleted)
+	health_changed.emit(health.current, health.maximum.value)
+
+
+func _process(delta: float) -> void:
+	health.regenerate(delta)
 
 
 func take_damage(amount: float) -> void:
-	current_health -= amount
+	health.take_damage(amount)
 
 
 func life_gain(amount: float) -> void:
-	current_health += amount
+	health.heal(amount)
+
+
+func _on_changed(current: float, maximum: float) -> void:
+	health_changed.emit(current, maximum)
+
+
+func _on_depleted() -> void:
+	health_depleted.emit()

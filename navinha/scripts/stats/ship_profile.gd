@@ -4,6 +4,7 @@ class_name ShipProfile
 ## Valores base do casco. Equipamento e upgrade nunca escrevem aqui.
 
 @export var max_health := 1.0
+@export var health_regen := 0.0
 @export var speed := 0.0
 @export var acceleration := 0.0
 @export var friction := 0.0
