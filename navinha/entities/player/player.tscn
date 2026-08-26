@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://entities/player/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_r66lb"]
+[ext_resource type="Resource" path="res://entities/player/player_stats.tres" id="4_stats"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
 size = Vector2(74, 26)
@@ -35,9 +36,8 @@ position = Vector2(39, 0)
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("player_health") instance=ExtResource("3_r66lb")]
-MAX_HEALTH = 10.0
-player_health = NodePath("../Player_Health")
+[node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_r66lb")]
+stats = ExtResource("4_stats")
 
 [node name="Player_Health" type="ProgressBar" parent="." unique_id=660580569]
 unique_name_in_owner = true
@@ -66,5 +66,6 @@ show_percentage = false
 unique_name_in_owner = true
 
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
 [connection signal="timeout" from="Boost_Timer" to="." method="_on_boost_timer_timeout"]

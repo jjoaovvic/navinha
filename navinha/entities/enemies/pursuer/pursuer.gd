@@ -17,6 +17,7 @@ func _on_health_component_health_depleted() -> void:
 	drop_rate = randf()
 	if drop_rate > 0.9:
 		call_deferred("spawn_life_pill")
+	queue_free()
 
 func spawn_life_pill() -> void:
 	var pill = preload("res://entities/pickups/life_pill/life_pill.tscn").instantiate()

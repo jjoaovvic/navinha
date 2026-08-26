@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ShipStats" format=3]
+
+[ext_resource type="Script" path="res://scripts/stats/stat.gd" id="1_ygx3p"]
+[ext_resource type="Script" path="res://scripts/stats/ship_stats.gd" id="2_4gheg"]
+
+[sub_resource type="Resource" id="Resource_y8u0b"]
+script = ExtResource("1_ygx3p")
+base_value = 1.0
+
+[resource]
+script = ExtResource("2_4gheg")
+max_health = SubResource("Resource_y8u0b")

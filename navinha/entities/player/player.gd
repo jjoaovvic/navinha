@@ -82,6 +82,11 @@ func _on_bullet_time_timeout() -> void:
 func _on_health_component_health_depleted() -> void:
 	died.emit()
 
+
+func _on_health_component_health_changed(current: float, maximum: float) -> void:
+	%Player_Health.max_value = maximum
+	%Player_Health.value = current
+
 func _on_boost_timer_timeout() -> void:
 	can_boost_recovery = true
 

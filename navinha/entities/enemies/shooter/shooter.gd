@@ -26,3 +26,7 @@ func shoot():
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = 1
+
+
+func _on_health_component_health_depleted() -> void:
+	queue_free()
