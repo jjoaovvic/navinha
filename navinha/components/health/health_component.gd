@@ -4,11 +4,11 @@ class_name HealthComponent
 signal health_changed(current: float, maximum: float)
 signal health_depleted
 
-@export var stats_component: StatsComponent
+var maximum: Stat
 
 var max_health: float:
 	get:
-		return stats_component.stats.max_health.value
+		return maximum.value
 
 var current_health: float = 0.0:
 	set(value):
@@ -19,7 +19,7 @@ var current_health: float = 0.0:
 
 
 func _ready() -> void:
-	assert(stats_component != null, "HealthComponent precisa de um StatsComponent")
+	assert(maximum != null, "HealthComponent nao recebeu o Stat de vida maxima")
 	current_health = max_health
 
 

@@ -38,11 +38,11 @@ position = Vector2(39, 0)
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="StatsComponent" parent="." instance=ExtResource("5_sc")]
+[node name="StatsComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_sc")]
+health = NodePath("../HealthComponent")
 profile = ExtResource("4_stats")
 
-[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("stats_component") instance=ExtResource("3_r66lb")]
-stats_component = NodePath("../StatsComponent")
+[node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_r66lb")]
 
 [node name="Player_Health" type="ProgressBar" parent="." unique_id=660580569]
 unique_name_in_owner = true
