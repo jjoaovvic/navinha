@@ -6,7 +6,6 @@ class_name Stat
 		base_value = new_value
 		_refresh()
 
-## Pré-calculado: só muda quando o base ou os modificadores mudam.
 var value: float:
 	get:
 		return _value

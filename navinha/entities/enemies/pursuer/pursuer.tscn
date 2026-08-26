@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://n0xmtyktohpm" path="res://assets/ufoRed.png" id="2_wqde6"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_iyvg4"]
 [ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_0gukp"]
-[ext_resource type="Resource" path="res://entities/enemies/pursuer/pursuer_stats.tres" id="5_stats"]
+[ext_resource type="Resource" path="res://entities/enemies/pursuer/pursuer_profile.tres" id="5_stats"]
+[ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="6_sc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_her8w"]
 radius = 28.01785
@@ -23,8 +24,11 @@ texture = ExtResource("2_wqde6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479034396]
 shape = SubResource("CircleShape2D_her8w")
 
-[node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_iyvg4")]
-stats = ExtResource("5_stats")
+[node name="StatsComponent" parent="." instance=ExtResource("6_sc")]
+profile = ExtResource("5_stats")
+
+[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("stats_component") instance=ExtResource("3_iyvg4")]
+stats_component = NodePath("../StatsComponent")
 
 [node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("4_0gukp")]
 

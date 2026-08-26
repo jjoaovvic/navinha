@@ -4,13 +4,11 @@ class_name HealthComponent
 signal health_changed(current: float, maximum: float)
 signal health_depleted
 
-@export var stats: ShipStats
-
-var _stats: ShipStats = ShipStats.new()
+@export var stats_component: StatsComponent
 
 var max_health: float:
 	get:
-		return _stats.max_health.value
+		return stats_component.stats.max_health.value
 
 var current_health: float = 0.0:
 	set(value):
@@ -21,10 +19,7 @@ var current_health: float = 0.0:
 
 
 func _ready() -> void:
-	# Resource exportado é compartilhado entre as instâncias da cena: sem a
-	# cópia, ferir um inimigo feriria todos.
-	if stats != null:
-		_stats = stats.duplicate(true)
+	assert(stats_component != null, "HealthComponent precisa de um StatsComponent")
 	current_health = max_health
 
 

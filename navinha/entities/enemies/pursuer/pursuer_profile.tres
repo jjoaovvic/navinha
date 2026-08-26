@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ShipProfile" format=3]
+
+[ext_resource type="Script" path="res://scripts/stats/ship_profile.gd" id="1_jqym7"]
+
+[resource]
+script = ExtResource("1_jqym7")
+speed = 300.0

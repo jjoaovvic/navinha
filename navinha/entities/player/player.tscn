@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://entities/player/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_r66lb"]
-[ext_resource type="Resource" path="res://entities/player/player_stats.tres" id="4_stats"]
+[ext_resource type="Resource" path="res://entities/player/player_profile.tres" id="4_stats"]
+[ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="5_sc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
 size = Vector2(74, 26)
@@ -36,8 +37,11 @@ position = Vector2(39, 0)
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_r66lb")]
-stats = ExtResource("4_stats")
+[node name="StatsComponent" parent="." instance=ExtResource("5_sc")]
+profile = ExtResource("4_stats")
+
+[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("stats_component") instance=ExtResource("3_r66lb")]
+stats_component = NodePath("../StatsComponent")
 
 [node name="Player_Health" type="ProgressBar" parent="." unique_id=660580569]
 unique_name_in_owner = true

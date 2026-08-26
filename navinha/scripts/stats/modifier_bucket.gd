@@ -2,7 +2,6 @@ extends RefCounted
 class_name ModifierBucket
 
 ## Um lado do acumulado de um Stat: só buffs, ou só debuffs.
-## Guarda os modificadores originais e o total pré-calculado deles.
 
 var flat := 0.0
 var additive := 0.0
@@ -35,7 +34,6 @@ func _accumulate(modifier: StatModifier) -> void:
 		StatModifier.Kind.ADDITIVE:
 			additive += modifier.amount
 		StatModifier.Kind.MULTIPLICATIVE:
-			# Piso em 0: um debuff de -100% ou pior zera, não inverte o sinal.
 			multiplier *= maxf(0.0, 1.0 + modifier.amount)
 
 

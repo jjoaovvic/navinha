@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ShipProfile" format=3]
+
+[ext_resource type="Script" path="res://scripts/stats/ship_profile.gd" id="1_f6tx5"]
+
+[resource]
+script = ExtResource("1_f6tx5")
+max_health = 10.0
+speed = 500.0
+acceleration = 5.0
+friction = 2.0
+fire_rate = 5.0
+max_boost = 10.0
+boost_drain = 5.0
+boost_recovery = 1.5
+boost_multiplier = 2.0

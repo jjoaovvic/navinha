@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b7nwuv4dauvee" path="res://assets/enemyRed1.png" id="2_70ysr"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_70ysr"]
 [ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_er8mf"]
-[ext_resource type="Resource" path="res://entities/enemies/shooter/shooter_stats.tres" id="5_stats"]
+[ext_resource type="Resource" path="res://entities/enemies/shooter/shooter_profile.tres" id="5_stats"]
+[ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="6_sc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
 size = Vector2(84, 93)
@@ -30,8 +31,11 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(48, 0)
 
-[node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]
-stats = ExtResource("5_stats")
+[node name="StatsComponent" parent="." instance=ExtResource("6_sc")]
+profile = ExtResource("5_stats")
+
+[node name="HealthComponent" parent="." unique_id=1900160482 node_paths=PackedStringArray("stats_component") instance=ExtResource("3_70ysr")]
+stats_component = NodePath("../StatsComponent")
 
 [node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
 
