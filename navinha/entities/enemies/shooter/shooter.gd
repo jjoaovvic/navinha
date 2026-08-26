@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
+@export var HealthComponent : HealthComponent
+@export var stats_component: StatsComponent
 @onready var player = get_node("/root/Test/Player")
-const BULLET_TIME = 1.0
+@onready var stats: ShipStats = stats_component.stats
 var can_shoot = 0
 
-@export var HealthComponent : HealthComponent
-
 func _ready() -> void:
+	%Bullet_Timer_Enemy.wait_time = stats.shot_interval()
 	%Bullet_Timer_Enemy.start()
 
 func _physics_process(_delta: float) -> void:
@@ -26,7 +27,6 @@ func shoot():
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = 1
-
 
 func _on_health_component_health_depleted() -> void:
 	queue_free()

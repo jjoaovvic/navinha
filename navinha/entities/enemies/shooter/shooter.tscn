@@ -10,11 +10,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
 size = Vector2(84, 93)
 
-[node name="Shooter" type="CharacterBody2D" unique_id=1135848092 node_paths=PackedStringArray("HealthComponent")]
+[node name="Shooter" type="CharacterBody2D" unique_id=1135848092 node_paths=PackedStringArray("HealthComponent", "stats_component")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_k0pq2")
 HealthComponent = NodePath("HealthComponent")
+stats_component = NodePath("StatsComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1962340381]
 rotation = -1.5707964

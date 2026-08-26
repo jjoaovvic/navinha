@@ -2,13 +2,15 @@ extends CharacterBody2D
 
 @export var xp_value:int = 0
 @export var HealthComponent : HealthComponent
+@export var stats_component: StatsComponent
 @onready var player : CharacterBody2D = get_node("/root/Test/Player")
+@onready var stats: ShipStats = stats_component.stats
 var drop_rate: float
 
 
 func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 300.0
+	velocity = direction * stats.speed.value
 	move_and_slide()
 
 

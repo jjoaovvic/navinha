@@ -10,12 +10,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_her8w"]
 radius = 28.01785
 
-[node name="Pursuer" type="CharacterBody2D" unique_id=1180175329 node_paths=PackedStringArray("HealthComponent")]
+[node name="Pursuer" type="CharacterBody2D" unique_id=1180175329 node_paths=PackedStringArray("HealthComponent", "stats_component")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_42wrp")
 xp_value = 1
 HealthComponent = NodePath("HealthComponent")
+stats_component = NodePath("StatsComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1843119086]
 scale = Vector2(0.5934066, 0.5934066)

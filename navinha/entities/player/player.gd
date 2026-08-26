@@ -1,30 +1,27 @@
 extends CharacterBody2D
 
-#@export var HealthComponent : HealthComponent
+@export var stats_component: StatsComponent
+
 @onready var boost_bar = %Player_Boost
 @onready var boost_timer = %Boost_Timer
-const SPEED = 500.0
-var BULLET_TIME = 0.2
+@onready var stats: ShipStats = stats_component.stats
+
 const ROTATION_SPEED = 10.0
 const DEADZONE = 0.2
-const FRICTION = 2
-const ACCELERATION = 5
-var MAX_BOOST = 10
-const BOOST_RATE = 5
-const BOOST_RECOVERY_RATE = 1.5
 
 var xp:int
 var can_boost_recovery = true
 var boost_effect = 1
-var boost_modifier:float = 2
 var can_shoot = 1
 var target_angle: float
 signal died
 
 func _ready() -> void:
-	%Bullet_Timer.wait_time = BULLET_TIME
-	boost_bar.max_value = MAX_BOOST
-	boost_bar.value = MAX_BOOST
+	%Bullet_Timer.wait_time = stats.shot_interval()
+	boost_bar.max_value = stats.max_boost.value
+	boost_bar.value = boost_bar.max_value
+	stats.fire_rate.changed.connect(_on_fire_rate_changed)
+	stats.max_boost.changed.connect(_on_max_boost_changed)
 
 func get_input() -> Vector2:
 	var direction := Input.get_vector("left", "right", "up", "down")
@@ -38,10 +35,10 @@ func shoot():
 	add_child(new_bullet)
 
 func process_movement(delta: float, move_direction: Vector2) ->void:
-	var target_velocity:Vector2 = move_direction * SPEED * boost_effect
-	velocity = (velocity.lerp(target_velocity, delta * ACCELERATION) 
+	var target_velocity:Vector2 = move_direction * stats.speed.value * boost_effect
+	velocity = (velocity.lerp(target_velocity, delta * stats.acceleration.value) 
 		if target_velocity else
-		velocity.lerp(target_velocity, delta * FRICTION))
+		velocity.lerp(target_velocity, delta * stats.friction.value))
 
 func _physics_process(delta: float) -> void:
 	var move_direction: Vector2
@@ -67,14 +64,14 @@ func _physics_process(delta: float) -> void:
 		%Bullet_Timer.start()
 		
 	if Input.is_action_pressed("boost"):
-		boost_effect = boost_modifier
-		boost_bar.value -= delta * BOOST_RATE
+		boost_effect = stats.boost_multiplier.value
+		boost_bar.value -= delta * stats.boost_drain.value
 		can_boost_recovery = false
 		boost_timer.start()
 	else:
 		boost_effect = 1
 		if can_boost_recovery:
-			boost_bar.value += delta * BOOST_RECOVERY_RATE
+			boost_bar.value += delta * stats.boost_recovery.value
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
@@ -86,6 +83,12 @@ func _on_health_component_health_depleted() -> void:
 func _on_health_component_health_changed(current: float, maximum: float) -> void:
 	%Player_Health.max_value = maximum
 	%Player_Health.value = current
+
+func _on_fire_rate_changed() -> void:
+	%Bullet_Timer.wait_time = stats.shot_interval()
+
+func _on_max_boost_changed() -> void:
+	boost_bar.max_value = stats.max_boost.value
 
 func _on_boost_timer_timeout() -> void:
 	can_boost_recovery = true
