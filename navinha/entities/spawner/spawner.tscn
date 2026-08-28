@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cnk5dbdttqppo"]
+
+[ext_resource type="Texture2D" uid="uid://lds0c4m7ygfn" path="res://assets/ballYellow_09.png" id="1_ttk4a"]
+[ext_resource type="Script" uid="uid://dn1cfg14v46dq" path="res://entities/spawner/spawner.gd" id="2_ttk4a"]
+
+[node name="Spawner" type="Sprite2D" unique_id=890861168]
+modulate = Color(1, 0.33333334, 0.3764706, 1)
+scale = Vector2(0.7094595, 0.7094595)
+texture = ExtResource("1_ttk4a")
+script = ExtResource("2_ttk4a")

@@ -1,26 +1,50 @@
 extends Node2D
 
+var wave_in_progress : bool = false
+var current_wave_number = 1
+
 func _ready() -> void:
 	%GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
 	%Upgrade.process_mode = Node.PROCESS_MODE_ALWAYS
+	wave_call(current_wave_number)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
+	if not wave_in_progress:
+		return
+	var wave = get_node_or_null("Wave " + str(current_wave_number))
+	if wave == null:
+		return
+	if wave.get_children().is_empty():
+		wave_in_progress = false
+		current_wave_number += 1
+		wave_call(current_wave_number)
 
-func spawn_enemy():
-	var pursuer = preload("res://entities/enemies/pursuer/pursuer.tscn").instantiate()
-	%Spawner.progress_ratio = randf()
-	pursuer.global_position = %Spawner.global_position
-	add_child(pursuer)
+#func spawn_enemy():
+	#var pursuer = preload("res://entities/enemies/pursuer/pursuer.tscn").instantiate()
+	#%Spawner.progress_ratio = randf()
+	#pursuer.global_position = %Spawner.global_position
+	#add_child(pursuer)
+
+func wave_call(wave):
+	wave_in_progress = true
+	var current_wave = get_node_or_null("Wave " + str(wave))
+	if current_wave == null:
+		print("Fim das waves!")
+		return
+	current_wave.visible = true
+	var spawners = current_wave.get_children()
+	for spawn in spawners:
+		spawn.spawn()
 
 func set_upgrade():
 	%UpgradeButton.set_upgrade()
 	%UpgradeButton2.set_upgrade()
 	%UpgradeButton3.set_upgrade()
 
-func _on_pursuer_timer_timeout() -> void:
-	spawn_enemy()
+#func _on_pursuer_timer_timeout() -> void:
+	#spawn_enemy()
 
 func _on_player_died() -> void:
 	%GameOver.visible = true

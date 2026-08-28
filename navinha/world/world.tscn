@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c2rp3l4wgfol2" path="res://entities/enemies/shooter/shooter.tscn" id="3_iyx0m"]
 [ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://ui/upgrade/upgrade_button.gd" id="4_74lek"]
 [ext_resource type="PackedScene" uid="uid://cdbg0stat50v" path="res://ui/debug/stats_overlay.tscn" id="5_dbg"]
+[ext_resource type="PackedScene" uid="uid://cnk5dbdttqppo" path="res://entities/spawner/spawner.tscn" id="6_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://d2x3uptgj1vsm" path="res://entities/enemies/pursuer/pursuer.tscn" id="7_sc4t8"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
 _data = {
@@ -19,7 +21,7 @@ script = ExtResource("1_74lek")
 unique_name_in_owner = true
 position = Vector2(567, 307)
 
-[node name="StatsOverlay" parent="." node_paths=PackedStringArray("stats_component") instance=ExtResource("5_dbg")]
+[node name="StatsOverlay" parent="." unique_id=136911889 node_paths=PackedStringArray("stats_component") instance=ExtResource("5_dbg")]
 process_mode = 3
 stats_component = NodePath("../Player/StatsComponent")
 
@@ -110,6 +112,48 @@ offset_right = 896.0
 offset_bottom = 392.0
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
+
+[node name="Wave 1" type="Node2D" parent="." unique_id=311379188]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-6.1035156e-05, -3.0517578e-05)
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="Spawner" parent="Wave 1" unique_id=890861168 instance=ExtResource("6_fn3g3")]
+position = Vector2(881.99994, 305)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("7_sc4t8")
+
+[node name="Spawner2" parent="Wave 1" unique_id=401156848 instance=ExtResource("6_fn3g3")]
+position = Vector2(330.99988, 322)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("7_sc4t8")
+
+[node name="Spawner3" parent="Wave 1" unique_id=1939075271 instance=ExtResource("6_fn3g3")]
+position = Vector2(575, 148)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("3_iyx0m")
+
+[node name="Wave 2" type="Node2D" parent="." unique_id=1796073782]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-6.1035156e-05, -3.0517578e-05)
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="Spawner" parent="Wave 2" unique_id=1611450910 instance=ExtResource("6_fn3g3")]
+position = Vector2(1028.9999, 120)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("7_sc4t8")
+
+[node name="Spawner2" parent="Wave 2" unique_id=1608966321 instance=ExtResource("6_fn3g3")]
+position = Vector2(109.00003, 336)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("7_sc4t8")
+
+[node name="Spawner3" parent="Wave 2" unique_id=877460434 instance=ExtResource("6_fn3g3")]
+position = Vector2(761, 122.000015)
+scale = Vector2(0.63513505, 0.63513505)
+load_enemy = ExtResource("3_iyx0m")
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
