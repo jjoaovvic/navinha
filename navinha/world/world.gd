@@ -31,12 +31,12 @@ func wave_call(wave):
 	wave_in_progress = true
 	var current_wave = get_node_or_null("Wave " + str(wave))
 	if current_wave == null:
-		print("Fim das waves!")
+		print("Ganhou")
 		return
 	current_wave.visible = true
 	var spawners = current_wave.get_children()
-	for spawn in spawners:
-		spawn.spawn()
+	for spawner in spawners:
+		spawner.spawn()
 
 func set_upgrade():
 	%UpgradeButton.set_upgrade()
