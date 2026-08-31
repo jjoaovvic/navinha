@@ -19,6 +19,7 @@ script = ExtResource("1_74lek")
 
 [node name="Player" parent="." unique_id=1863312260 instance=ExtResource("1_errlg")]
 unique_name_in_owner = true
+z_index = 50
 position = Vector2(567, 307)
 
 [node name="StatsOverlay" parent="." unique_id=136911889 node_paths=PackedStringArray("stats_component") instance=ExtResource("5_dbg")]
@@ -133,6 +134,10 @@ load_enemy = ExtResource("7_sc4t8")
 position = Vector2(575, 148)
 scale = Vector2(0.63513505, 0.63513505)
 load_enemy = ExtResource("3_iyx0m")
+
+[node name="Spawner4" parent="Wave 1" unique_id=1994961069 instance=ExtResource("6_fn3g3")]
+position = Vector2(935.99994, 243)
+scale = Vector2(0.7094594, 0.7094594)
 
 [node name="Wave 2" type="Node2D" parent="." unique_id=1796073782]
 unique_name_in_owner = true
