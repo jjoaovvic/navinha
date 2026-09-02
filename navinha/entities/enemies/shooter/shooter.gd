@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var xp_value:int = 0
+var drop_rate: float
 @export var HealthComponent : HealthComponent
 @export var stats_component: StatsComponent
 @onready var player = get_node("/root/Test/Player")
@@ -29,4 +31,13 @@ func _on_bullet_timer_timeout() -> void:
 	can_shoot = 1
 
 func _on_health_component_health_depleted() -> void:
+	player.xp_gain(xp_value)
+	drop_rate = randf()
+	if drop_rate > 0.9:
+		call_deferred("spawn_life_pill")
 	queue_free()
+
+func spawn_life_pill() -> void:
+	var pill = preload("res://entities/pickups/life_pill/life_pill.tscn").instantiate()
+	pill.global_position = global_position
+	get_tree().root.add_child(pill)

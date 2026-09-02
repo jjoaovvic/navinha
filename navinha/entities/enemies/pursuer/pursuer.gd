@@ -24,4 +24,4 @@ func _on_health_component_health_depleted() -> void:
 func spawn_life_pill() -> void:
 	var pill = preload("res://entities/pickups/life_pill/life_pill.tscn").instantiate()
 	pill.global_position = global_position
-	add_sibling(pill)
+	get_tree().root.add_child(pill)
