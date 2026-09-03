@@ -97,7 +97,7 @@ func xp_gain(gain) -> void:
 	xp += gain
 	if xp == 5:
 		%Upgrade.visible = true
-		var world = get_parent()
+		var world = get_parent().get_parent()
 		world.set_upgrade()
 		get_tree().paused = true
 		xp = 0

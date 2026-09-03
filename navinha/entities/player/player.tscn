@@ -38,19 +38,26 @@ position = Vector2(39, 0)
 unique_name_in_owner = true
 wait_time = 0.3
 
-[node name="StatsComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_sc")]
-health_component = NodePath("../HealthComponent")
+[node name="StatsComponent" parent="." unique_id=422485704 node_paths=PackedStringArray("health_component") instance=ExtResource("5_sc")]
 profile = ExtResource("4_stats")
+health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_r66lb")]
 
 [node name="Player_Health" type="ProgressBar" parent="." unique_id=660580569]
 unique_name_in_owner = true
 top_level = true
-offset_left = 458.0
-offset_top = 543.0
-offset_right = 755.0
-offset_bottom = 570.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -105.0
+offset_right = 152.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_r66lb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1txc5")
 value = 95.0
@@ -59,10 +66,17 @@ show_percentage = false
 [node name="Player_Boost" type="ProgressBar" parent="." unique_id=758437285]
 unique_name_in_owner = true
 top_level = true
-offset_left = 517.0
-offset_top = 583.0
-offset_right = 698.0
-offset_bottom = 610.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -70.0
+offset_right = 91.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_her8w")
 value = 98.0
 show_percentage = false

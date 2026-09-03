@@ -1,29 +1,95 @@
 [gd_scene format=3 uid="uid://dva2dsb0je44s"]
 
 [ext_resource type="Script" uid="uid://lha6bm3att5o" path="res://ui/main_menu/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://ruhnn0kciolk" path="res://ui/main_menu/options.gd" id="2_mu8pm"]
 
 [node name="Main Menu" type="Node2D" unique_id=1135845473]
 script = ExtResource("1_l6cm7")
 
-[node name="Menu" type="CanvasLayer" parent="." unique_id=2099434847]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=952914719]
+offset_right = 2951.0
+offset_bottom = 1908.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=952914719]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Menu" type="CanvasLayer" parent="." unique_id=2099434847]
+unique_name_in_owner = true
 
 [node name="StartButton" type="Button" parent="Menu" unique_id=15531541]
-offset_left = 424.0
-offset_top = 272.0
-offset_right = 680.0
-offset_bottom = 376.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -52.0
+offset_right = 128.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "START GAME"
 
 [node name="ExitButton" type="Button" parent="Menu" unique_id=1238514121]
-offset_left = 488.0
-offset_top = 400.0
-offset_right = 608.0
-offset_bottom = 472.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 160.0
+offset_right = 60.0
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "EXIT"
+
+[node name="OptionButton" type="Button" parent="Menu" unique_id=146933036]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.5
+offset_top = 70.0
+offset_right = 103.5
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPTIONS"
+
+[node name="Options" type="CanvasLayer" parent="." unique_id=432716072]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("2_mu8pm")
+
+[node name="BackButton" type="Button" parent="Options" unique_id=435632388]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = 178.0
+offset_right = 68.0
+offset_bottom = 237.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "VOLTAR"
+
+[node name="MenuBar" type="MenuBar" parent="Options" unique_id=1877040640]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -48.0
+offset_right = 114.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Menu/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Options/BackButton" to="Options" method="_on_back_button_pressed"]

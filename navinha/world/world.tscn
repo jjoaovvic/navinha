@@ -12,27 +12,36 @@ _data = {
 point_count = 5
 
 [node name="Test" type="Node2D" unique_id=715030780]
+process_mode = 3
 script = ExtResource("1_74lek")
 wave_quantity = 6
 
-[node name="Player" parent="." unique_id=1863312260 instance=ExtResource("1_errlg")]
+[node name="Game" type="Control" parent="." unique_id=1343218242]
 unique_name_in_owner = true
+process_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" parent="Game" unique_id=1863312260 instance=ExtResource("1_errlg")]
 z_index = 50
 position = Vector2(567, 307)
 
-[node name="StatsOverlay" parent="." unique_id=136911889 node_paths=PackedStringArray("stats_component") instance=ExtResource("5_dbg")]
+[node name="StatsOverlay" parent="Game" unique_id=136911889 node_paths=PackedStringArray("stats_component") instance=ExtResource("5_dbg")]
 process_mode = 3
 stats_component = NodePath("../Player/StatsComponent")
 
-[node name="Path2D" type="Path2D" parent="." unique_id=1759707793]
+[node name="Path2D" type="Path2D" parent="Game" unique_id=1759707793]
+visible = false
 curve = SubResource("Curve2D_j5jx5")
 
-[node name="Spawner" type="PathFollow2D" parent="Path2D" unique_id=15944250]
+[node name="Spawner" type="PathFollow2D" parent="Game/Path2D" unique_id=15944250]
 unique_name_in_owner = true
 position = Vector2(-80, -104)
 rotation = -0.0061727613
 
-[node name="PursuerTimer" type="Timer" parent="." unique_id=931078494]
+[node name="PursuerTimer" type="Timer" parent="Game" unique_id=931078494]
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
@@ -42,32 +51,53 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=144418028]
-offset_right = 1160.0
-offset_bottom = 656.0
+offset_right = 2242.0
+offset_bottom = 1315.0
 color = Color(0, 0, 0, 0.22745098)
 
 [node name="Label" type="Label" parent="GameOver/ColorRect" unique_id=323186371]
-layout_mode = 0
-offset_left = 288.0
-offset_top = 224.0
-offset_right = 832.0
-offset_bottom = 368.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -438.0
+offset_top = -253.5
+offset_right = 106.0
+offset_bottom = -109.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="GameOver" unique_id=416884649]
-offset_left = 352.0
-offset_top = 368.0
-offset_right = 760.0
-offset_bottom = 432.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = 104.0
+offset_right = 204.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "RESTART"
 
 [node name="MenuButton" type="Button" parent="GameOver" unique_id=220000559]
-offset_left = 352.0
-offset_top = 464.0
-offset_right = 752.0
-offset_bottom = 528.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = 14.0
+offset_right = 201.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "MAIN MENU"
 
 [node name="Upgrade" type="CanvasLayer" parent="." unique_id=740316565]
@@ -75,41 +105,87 @@ unique_name_in_owner = true
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Upgrade" unique_id=140962115]
-offset_right = 1152.0
-offset_bottom = 656.0
+visible = false
+offset_right = 2130.0
+offset_bottom = 1255.0
 color = Color(0.5615084, 0.75235116, 0.40646252, 0.1764706)
 
 [node name="UpgradeButton" type="Button" parent="Upgrade" unique_id=1952637908]
 unique_name_in_owner = true
-offset_left = 224.0
-offset_top = 296.0
-offset_right = 424.0
-offset_bottom = 392.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -50.0
+offset_right = -138.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
 [node name="UpgradeButton2" type="Button" parent="Upgrade" unique_id=1972355000]
 unique_name_in_owner = true
-offset_left = 464.0
-offset_top = 296.0
-offset_right = 664.0
-offset_bottom = 392.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -48.0
+offset_right = 100.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
 [node name="UpgradeButton3" type="Button" parent="Upgrade" unique_id=993976448]
 unique_name_in_owner = true
-offset_left = 696.0
-offset_top = 296.0
-offset_right = 896.0
-offset_bottom = 392.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = -48.0
+offset_right = 336.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
-[connection signal="died" from="Player" to="." method="_on_player_died"]
-[connection signal="timeout" from="PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
+[node name="Pause" type="CanvasLayer" parent="." unique_id=914422440]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Pause" unique_id=1598030556]
+offset_right = 2433.0
+offset_bottom = 1417.0
+color = Color(0.0619267, 0.0619267, 0.061926693, 0.34901962)
+
+[node name="MenuButton" type="Button" parent="Pause" unique_id=456991644]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = 215.0
+offset_right = 251.5
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MENU INICIAL"
+
+[connection signal="died" from="Game/Player" to="." method="_on_player_died"]
+[connection signal="timeout" from="Game/PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
 [connection signal="pressed" from="GameOver/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Upgrade/UpgradeButton" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
 [connection signal="pressed" from="Upgrade/UpgradeButton2" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
 [connection signal="pressed" from="Upgrade/UpgradeButton3" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
+[connection signal="pressed" from="Pause/MenuButton" to="." method="_on_menu_button_pressed"]

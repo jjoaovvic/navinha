@@ -3,10 +3,12 @@ extends Node2D
 @export var wave_quantity:int
 var wave_in_progress : bool = false
 var current_wave_number = 1
+var paused:bool = false
 
 func _ready() -> void:
 	%GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
 	%Upgrade.process_mode = Node.PROCESS_MODE_ALWAYS
+	%Pause.process_mode = Node.PROCESS_MODE_ALWAYS
 	for wave in wave_quantity:
 		wave_creator(3, wave + 1)
 	wave_call(current_wave_number)
@@ -14,9 +16,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
+
+
 	if not wave_in_progress:
 		return
-	var wave = get_node_or_null("Wave " + str(current_wave_number))
+	var wave = %Game.get_node_or_null("Wave " + str(current_wave_number))
 	if wave == null:
 		return
 	if wave.get_children().is_empty():
@@ -32,7 +36,7 @@ func _process(_delta: float) -> void:
 
 func wave_call(wave):
 	wave_in_progress = true
-	var current_wave = get_node_or_null("Wave " + str(wave))
+	var current_wave = %Game.get_node_or_null("Wave " + str(wave))
 	if current_wave == null:
 		print("Ganhou")
 		return
@@ -72,10 +76,29 @@ func wave_creator(enemy_number:int, wave:int) -> void:
 	var screen_size = get_viewport_rect().size
 	wave_group.name = "Wave " + str(wave)
 	wave_group.visible = false
-	add_child(wave_group)
+	%Game.add_child(wave_group)
 	for i in enemy_number:
 		var spawner = load("res://entities/spawner/spawner.tscn").instantiate()
 		var random_x = randf_range(0, screen_size.x)
 		var random_y = randf_range(0, screen_size.y)
 		spawner.global_position = Vector2(random_x, random_y)
 		wave_group.add_child(spawner)
+
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("pause"):
+		#paused = !paused
+		#%Pause.visible = paused
+		#get_tree().paused = paused
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if paused == false:
+			# 1. Ativa a pausa
+			paused = true
+			%Pause.visible = true
+			get_tree().paused = true
+		elif paused == true:
+			# 1. Desativa a pausa
+			paused = false
+			%Pause.visible = false
+			get_tree().paused = false

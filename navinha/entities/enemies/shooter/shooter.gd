@@ -4,7 +4,7 @@ extends CharacterBody2D
 var drop_rate: float
 @export var HealthComponent : HealthComponent
 @export var stats_component: StatsComponent
-@onready var player = get_node("/root/Test/Player")
+@onready var player = get_node("/root/Test/Game/Player")
 @onready var stats: ShipStats = stats_component.stats
 var can_shoot = 0
 
