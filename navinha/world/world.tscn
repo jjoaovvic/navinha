@@ -176,7 +176,21 @@ offset_right = 251.5
 offset_bottom = 306.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "MENU INICIAL"
+text = "MAIN MENU"
+
+[node name="ExitButton" type="Button" parent="Pause" unique_id=961143233]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 325.0
+offset_right = 146.0
+offset_bottom = 386.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT GAME"
 
 [connection signal="died" from="Game/Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="Game/PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
@@ -186,3 +200,4 @@ text = "MENU INICIAL"
 [connection signal="pressed" from="Upgrade/UpgradeButton2" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
 [connection signal="pressed" from="Upgrade/UpgradeButton3" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
 [connection signal="pressed" from="Pause/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Pause/ExitButton" to="." method="_on_exit_button_pressed"]

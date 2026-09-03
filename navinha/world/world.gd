@@ -102,3 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			paused = false
 			%Pause.visible = false
 			get_tree().paused = false
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
