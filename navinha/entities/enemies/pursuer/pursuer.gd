@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export var xp_value:int = 0
 @export var HealthComponent : HealthComponent
 @export var stats_component: StatsComponent
-@onready var player : CharacterBody2D = get_node("/root/Test/Game/Player")
+@onready var player = get_tree().get_root().find_child("Player", true, false)
+
 @onready var stats: ShipStats = stats_component.stats
 var drop_rate: float
 
