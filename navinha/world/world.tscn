@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://nhlsmi0i1om5" path="res://world/world.gd" id="1_74lek"]
 [ext_resource type="PackedScene" uid="uid://d1cjki4t536gh" path="res://entities/player/player.tscn" id="1_errlg"]
 [ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://ui/upgrade/upgrade_button.gd" id="4_74lek"]
+[ext_resource type="PackedScene" uid="uid://b0qlowmcbd2cw" path="res://entities/projectiles/mine.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://cdbg0stat50v" path="res://ui/debug/stats_overlay.tscn" id="5_dbg"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
@@ -42,6 +43,9 @@ rotation = -0.0061727613
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
+
+[node name="Mine" parent="Game" unique_id=1751491878 instance=ExtResource("4_mmdvd")]
+position = Vector2(1311, 645)
 
 [node name="GameOver" type="CanvasLayer" parent="." unique_id=1886090869]
 unique_name_in_owner = true

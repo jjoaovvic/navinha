@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b0qlowmcbd2cw"]
+
+[ext_resource type="Script" uid="uid://cu5n1lpf3xq8a" path="res://entities/projectiles/mine.gd" id="1_msvmg"]
+[ext_resource type="Texture2D" uid="uid://pgp8xvmunrog" path="res://assets/bomb.png" id="2_ol7wc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mqn3"]
+radius = 368.34766
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_her8w"]
+radius = 72.02777
+
+[node name="Mine" type="Area2D" unique_id=1751491878]
+collision_mask = 2
+script = ExtResource("1_msvmg")
+
+[node name="ExplosionArea" type="Area2D" parent="." unique_id=1031150561]
+unique_name_in_owner = true
+collision_mask = 2
+
+[node name="ExplosionCollision" type="CollisionShape2D" parent="ExplosionArea" unique_id=1642910513]
+shape = SubResource("CircleShape2D_8mqn3")
+debug_color = Color(0.9365022, 1.7615856e-05, 0.6340407, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=471025099]
+shape = SubResource("CircleShape2D_her8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584054569]
+texture = ExtResource("2_ol7wc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
