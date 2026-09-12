@@ -9,19 +9,19 @@ radius = 43.011627
 [sub_resource type="CircleShape2D" id="CircleShape2D_8m5xh"]
 radius = 34.058773
 
-[node name="Kicker" type="CharacterBody2D" unique_id=1333401464]
+[node name="Kicker" type="CharacterBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=835073981]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_800y6")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1965061874]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1039521383]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8mqn3")
 
-[node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("2_fwt2m")]
+[node name="ContactDamageComponent" parent="." instance=ExtResource("2_fwt2m")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=305118655]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8m5xh")
