@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+		_on_restart_button_pressed()
 
 
 	if not wave_in_progress:
