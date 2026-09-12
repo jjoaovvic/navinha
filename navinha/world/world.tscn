@@ -200,8 +200,5 @@ text = "EXIT GAME"
 [connection signal="timeout" from="Game/PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
 [connection signal="pressed" from="GameOver/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOver/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Upgrade/UpgradeButton" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
-[connection signal="pressed" from="Upgrade/UpgradeButton2" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
-[connection signal="pressed" from="Upgrade/UpgradeButton3" to="." method="_on_upgrade_button_pressed" binds= [NodePath("Upgrade/UpgradeButton2")]]
 [connection signal="pressed" from="Pause/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Pause/ExitButton" to="." method="_on_exit_button_pressed"]
