@@ -49,18 +49,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	process_movement(delta, move_direction)
 	
-	#ATIVAR PARA CONTROLAR O TIRO PELO MOUSE
-	look_at(get_global_mouse_position())
-	
-	
-	#ATIVAR PARA CONTROLAR O TIRO PELO CONTROLE
-	#var drotation := Input.get_vector("cleft", "cright", "cup", "cdown")
-	#if drotation.length() >= DEADZONE: 
-		#target_angle = drotation.angle()
-	#if rotation != target_angle:
-		#var rotation_larp_weight: float = 1.0 - exp(-ROTATION_SPEED * delta)
-		#rotation = lerp_angle(rotation, target_angle, rotation_larp_weight)
-		
+	var drotation := Input.get_vector("cleft", "cright", "cup", "cdown")
+	if drotation.length() >= DEADZONE:
+		target_angle = drotation.angle()
+		var rotation_larp_weight: float = 1.0 - exp(-ROTATION_SPEED * delta)
+		rotation = lerp_angle(rotation, target_angle, rotation_larp_weight)
+	else:
+		look_at(get_global_mouse_position())
+
 	if Input.is_action_pressed("shoot") and can_shoot == 1:
 		shoot()
 		can_shoot = 0
