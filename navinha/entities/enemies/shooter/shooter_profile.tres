@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ShipProfile" format=3]
+[gd_resource type="Resource" script_class="ShipProfile" format=3 uid="uid://25ey0wibv8ow"]
 
-[ext_resource type="Script" path="res://scripts/stats/ship_profile.gd" id="1_o2t24"]
+[ext_resource type="Script" uid="uid://b02tt2k11x7r3" path="res://scripts/stats/ship_profile.gd" id="1_o2t24"]
 
 [resource]
 script = ExtResource("1_o2t24")
+health_regen = 0.2
 fire_rate = 1.0
