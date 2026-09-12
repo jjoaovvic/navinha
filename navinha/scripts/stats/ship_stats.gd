@@ -10,6 +10,9 @@ var max_boost: Stat
 var boost_drain: Stat
 var boost_recovery: Stat
 var boost_multiplier: Stat
+var bullet_damage: Stat
+var bullet_speed: Stat
+var bullet_range: Stat
 
 
 static func from_profile(profile: ShipProfile) -> ShipStats:
@@ -24,6 +27,9 @@ static func from_profile(profile: ShipProfile) -> ShipStats:
 	stats.boost_drain = Stat.new(base.boost_drain)
 	stats.boost_recovery = Stat.new(base.boost_recovery)
 	stats.boost_multiplier = Stat.new(base.boost_multiplier)
+	stats.bullet_damage = Stat.new(base.bullet_damage)
+	stats.bullet_speed = Stat.new(base.bullet_speed)
+	stats.bullet_range = Stat.new(base.bullet_range)
 	return stats
 
 

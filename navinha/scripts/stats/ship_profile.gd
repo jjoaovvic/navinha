@@ -13,3 +13,7 @@ class_name ShipProfile
 @export var boost_drain := 0.0
 @export var boost_recovery := 0.0
 @export var boost_multiplier := 1.0
+
+@export var bullet_damage := 1.0
+@export var bullet_speed := 1000.0
+@export var bullet_range := 1200.0

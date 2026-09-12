@@ -32,6 +32,9 @@ func shoot():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = %Gun.global_transform
 	new_bullet.global_rotation = %Gun.global_rotation
+	new_bullet.damage = stats.bullet_damage.value
+	new_bullet.speed = stats.bullet_speed.value
+	new_bullet.range = stats.bullet_range.value
 	add_child(new_bullet)
 
 func process_movement(delta: float, move_direction: Vector2) ->void:
