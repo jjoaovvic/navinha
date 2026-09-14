@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://entities/player/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_r66lb"]
-[ext_resource type="Resource" path="res://entities/player/player_profile.tres" id="4_stats"]
+[ext_resource type="Resource" uid="uid://cxpjuuxqerdto" path="res://entities/player/player_profile.tres" id="4_stats"]
 [ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="5_sc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
@@ -30,9 +30,17 @@ shape = SubResource("RectangleShape2D_her8w")
 rotation = 1.5707964
 texture = ExtResource("2_r66lb")
 
-[node name="Gun" type="Marker2D" parent="." unique_id=851497368]
+[node name="Gun1" type="Marker2D" parent="." unique_id=851497368]
 unique_name_in_owner = true
-position = Vector2(39, 0)
+position = Vector2(43, 0)
+
+[node name="Gun2" type="Marker2D" parent="." unique_id=282928056]
+unique_name_in_owner = true
+position = Vector2(39, -8)
+
+[node name="Gun3" type="Marker2D" parent="." unique_id=526396252]
+unique_name_in_owner = true
+position = Vector2(39, 8)
 
 [node name="Bullet_Timer" type="Timer" parent="." unique_id=827755480]
 unique_name_in_owner = true
