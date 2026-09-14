@@ -46,6 +46,7 @@ func create_bullet(gun):
 	new_bullet.global_rotation = get_node_or_null("Gun"+str(gun)).global_rotation
 	if randf() <= critical_chance:
 		new_bullet.damage = stats.bullet_damage.value * critical_damage
+		new_bullet.modulate = Color.RED
 	else:
 		new_bullet.damage = stats.bullet_damage.value
 	new_bullet.speed = stats.bullet_speed.value
