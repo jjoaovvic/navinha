@@ -16,6 +16,8 @@ var boost_effect = 1
 var can_shoot = 1
 var target_angle: float
 var bullet_qnt:int = 2
+var critical_chance:float = 0.01
+var critical_damage:float = 1.5
 signal died
 
 func _ready() -> void:
@@ -42,7 +44,10 @@ func create_bullet(gun):
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = get_node_or_null("Gun"+str(gun)).global_transform
 	new_bullet.global_rotation = get_node_or_null("Gun"+str(gun)).global_rotation
-	new_bullet.damage = stats.bullet_damage.value
+	if randf() <= critical_chance:
+		new_bullet.damage = stats.bullet_damage.value * critical_damage
+	else:
+		new_bullet.damage = stats.bullet_damage.value
 	new_bullet.speed = stats.bullet_speed.value
 	new_bullet.range = stats.bullet_range.value
 	add_sibling(new_bullet)
