@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d11sokdnimlus"]
+
+[ext_resource type="Script" uid="uid://dia0piflqg4eo" path="res://entities/projectiles/orb.gd" id="1_xdlj8"]
+[ext_resource type="Texture2D" uid="uid://ddnmtirblmmko" path="res://assets/planet07.png" id="2_2qvkr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_her8w"]
+radius = 14.035668
+
+[node name="Orb" type="Area2D" unique_id=1272448503]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xdlj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1041757138]
+shape = SubResource("CircleShape2D_her8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=901999691]
+scale = Vector2(0.02328125, 0.02328125)
+texture = ExtResource("2_2qvkr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

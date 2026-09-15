@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://daxu5rmg4tydj" path="res://ui/upgrade/upgrade_button.gd" id="4_74lek"]
 [ext_resource type="PackedScene" uid="uid://b0qlowmcbd2cw" path="res://entities/projectiles/mine.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://cdbg0stat50v" path="res://ui/debug/stats_overlay.tscn" id="5_dbg"]
+[ext_resource type="PackedScene" uid="uid://d11sokdnimlus" path="res://entities/projectiles/orb.tscn" id="6_fn3g3"]
+[ext_resource type="Script" uid="uid://b3665t0mck2lf" path="res://world/orb_manager.gd" id="6_sc4t8"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
 _data = {
@@ -195,6 +197,11 @@ offset_bottom = 386.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "EXIT GAME"
+
+[node name="Orb_manager" type="Node2D" parent="." unique_id=227400250]
+position = Vector2(228, 739)
+script = ExtResource("6_sc4t8")
+orb_scene = ExtResource("6_fn3g3")
 
 [connection signal="died" from="Game/Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="Game/PursuerTimer" to="." method="_on_pursuer_timer_timeout"]

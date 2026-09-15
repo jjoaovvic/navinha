@@ -116,4 +116,3 @@ func xp_gain(gain) -> void:
 		world.set_upgrade()
 		get_tree().paused = true
 		xp = 0
-	print(xp)
