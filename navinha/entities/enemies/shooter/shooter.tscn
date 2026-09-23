@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7nwuv4dauvee" path="res://assets/enemyRed1.png" id="2_70ysr"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_70ysr"]
 [ext_resource type="PackedScene" uid="uid://cn0ll7h44gywt" path="res://components/contact_damage/contact_damage_component.tscn" id="4_er8mf"]
-[ext_resource type="Resource" path="res://entities/enemies/shooter/shooter_profile.tres" id="5_stats"]
+[ext_resource type="Resource" uid="uid://25ey0wibv8ow" path="res://entities/enemies/shooter/shooter_profile.tres" id="5_stats"]
 [ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="6_sc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv25w"]
@@ -32,13 +32,17 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(48, 0)
 
-[node name="StatsComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_sc")]
-health_component = NodePath("../HealthComponent")
+[node name="StatsComponent" parent="." unique_id=728189725 node_paths=PackedStringArray("health_component") instance=ExtResource("6_sc")]
 profile = ExtResource("5_stats")
+health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_70ysr")]
 
 [node name="ContactDamageComponent" parent="." unique_id=1325836946 instance=ExtResource("4_er8mf")]
 
+[node name="FireTimer" type="Timer" parent="." unique_id=208329919]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Bullet_Timer_Enemy" to="." method="_on_bullet_timer_timeout"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
+[connection signal="timeout" from="FireTimer" to="HealthComponent" method="_on_fire_timer_timeout"]

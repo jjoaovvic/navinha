@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_jqym7")
+max_health = 10.0
 health_regen = 0.1
 speed = 300.0

@@ -3,6 +3,7 @@ extends Area2D
 @export var damage:float = 1.0
 @export var speed := 1000
 @export var range := 1200
+var fire_damage:float = 0.0
 var travelled_distance = 0
 
 
@@ -16,3 +17,4 @@ func _on_body_entered(body: Node2D) -> void:
 	queue_free()
 	if body.has_node("HealthComponent"):
 		body.get_node("HealthComponent").take_damage(damage)
+		body.get_node("HealthComponent").fire_damage = fire_damage

@@ -92,7 +92,11 @@ show_percentage = false
 [node name="Boost_Timer" type="Timer" parent="." unique_id=37398328]
 unique_name_in_owner = true
 
+[node name="FireTimer" type="Timer" parent="." unique_id=2018456585]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Bullet_Timer" to="." method="_on_bullet_time_timeout"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
 [connection signal="timeout" from="Boost_Timer" to="." method="_on_boost_timer_timeout"]
+[connection signal="timeout" from="FireTimer" to="HealthComponent" method="_on_fire_timer_timeout"]

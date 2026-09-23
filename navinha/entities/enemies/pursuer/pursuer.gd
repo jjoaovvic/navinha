@@ -9,11 +9,11 @@ extends CharacterBody2D
 var drop_rate: float
 
 
+
 func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * stats.speed.value
 	move_and_slide()
-
 
 func _on_health_component_health_depleted() -> void:
 	player.xp_gain(xp_value)
