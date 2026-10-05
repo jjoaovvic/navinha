@@ -15,5 +15,10 @@ class_name ShipProfile
 @export var boost_multiplier := 1.0
 
 @export var bullet_damage := 1.0
-@export var bullet_speed := 1000.0
-@export var bullet_range := 1200.0
+@export var bullet_speed := 1500.0
+@export var bullet_range := 800.0
+
+@export var critical_chance := 0.01
+@export var critical_damage := 1.5
+@export var fire_damage := 1.0
+@export var fire_chance := 1.0

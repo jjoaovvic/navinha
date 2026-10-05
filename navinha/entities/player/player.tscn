@@ -3,11 +3,25 @@
 [ext_resource type="Script" uid="uid://cuodor4uyd3yn" path="res://entities/player/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://bfqjhqjx1vet0" path="res://assets/playerShip1_blue.png" id="2_r66lb"]
 [ext_resource type="PackedScene" uid="uid://c117pmd0tujn" path="res://components/health/health_component.tscn" id="3_r66lb"]
-[ext_resource type="Resource" uid="uid://cxpjuuxqerdto" path="res://entities/player/player_profile.tres" id="4_stats"]
+[ext_resource type="Script" uid="uid://b02tt2k11x7r3" path="res://scripts/stats/ship_profile.gd" id="4_fkugw"]
 [ext_resource type="PackedScene" uid="uid://bqx8n2vstats0" path="res://components/stats/stats_component.tscn" id="5_sc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_her8w"]
 size = Vector2(74, 26)
+
+[sub_resource type="Resource" id="Resource_8fjmc"]
+script = ExtResource("4_fkugw")
+max_health = 10.0
+health_regen = 0.5
+speed = 500.0
+acceleration = 5.0
+friction = 2.0
+fire_rate = 5.0
+max_boost = 10.0
+boost_drain = 5.0
+boost_recovery = 1.5
+boost_multiplier = 2.0
+bullet_speed = 1000.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r66lb"]
 bg_color = Color(0.3098112, 0.2644388, 0.21262407, 1)
@@ -19,6 +33,7 @@ bg_color = Color(0.31772473, 0.6975672, 0.32760108, 1)
 bg_color = Color(0.29322845, 0.635207, 0.8588632, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=1863312260 node_paths=PackedStringArray("stats_component")]
+scale = Vector2(0.7, 0.7)
 collision_mask = 5
 script = ExtResource("1_4dohe")
 stats_component = NodePath("StatsComponent")
@@ -47,7 +62,7 @@ unique_name_in_owner = true
 wait_time = 0.3
 
 [node name="StatsComponent" parent="." unique_id=422485704 node_paths=PackedStringArray("health_component") instance=ExtResource("5_sc")]
-profile = ExtResource("4_stats")
+profile = SubResource("Resource_8fjmc")
 health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." unique_id=1900160482 instance=ExtResource("3_r66lb")]

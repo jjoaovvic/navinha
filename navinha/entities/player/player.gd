@@ -16,10 +16,6 @@ var boost_effect = 1
 var can_shoot = 1
 var target_angle: float
 var bullet_qnt:int = 2
-var critical_chance:float = 0.01
-var critical_damage:float = 1.5
-var fire_damage:float = 1.0
-var fire_chance:float = 1.0
 signal died
 
 func _ready() -> void:
@@ -35,10 +31,10 @@ func get_input() -> Vector2:
 
 func shoot():
 	if bullet_qnt % 2 == 1:
-		for bullet in bullet_qnt:
+		for bullet in range(bullet_qnt):
 			create_bullet(bullet + 1)
 	else:
-		for bullet in bullet_qnt:
+		for bullet in range(bullet_qnt):
 			create_bullet(bullet + 2)
 
 func create_bullet(gun):
@@ -46,13 +42,13 @@ func create_bullet(gun):
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_transform = get_node_or_null("Gun"+str(gun)).global_transform
 	new_bullet.global_rotation = get_node_or_null("Gun"+str(gun)).global_rotation
-	if randf() <= critical_chance:
-		new_bullet.damage = stats.bullet_damage.value * critical_damage
+	if randf() <= stats.critical_chance.value:
+		new_bullet.damage = stats.bullet_damage.value * stats.critical_damage.value
 		new_bullet.modulate = Color.YELLOW
 	else:
 		new_bullet.damage = stats.bullet_damage.value
-	if randf() <= fire_chance:
-		new_bullet.fire_damage += fire_damage
+	if randf() <= stats.fire_chance.value:
+		new_bullet.fire_damage += stats.fire_damage.value
 		new_bullet.modulate = Color.RED
 	new_bullet.speed = stats.bullet_speed.value
 	new_bullet.range = stats.bullet_range.value

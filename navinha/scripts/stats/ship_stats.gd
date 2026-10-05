@@ -13,6 +13,10 @@ var boost_multiplier: Stat
 var bullet_damage: Stat
 var bullet_speed: Stat
 var bullet_range: Stat
+var critical_chance: Stat
+var critical_damage: Stat
+var fire_damage: Stat
+var fire_chance: Stat
 
 
 static func from_profile(profile: ShipProfile) -> ShipStats:
@@ -30,6 +34,10 @@ static func from_profile(profile: ShipProfile) -> ShipStats:
 	stats.bullet_damage = Stat.new(base.bullet_damage)
 	stats.bullet_speed = Stat.new(base.bullet_speed)
 	stats.bullet_range = Stat.new(base.bullet_range)
+	stats.critical_chance = Stat.new(base.critical_chance)
+	stats.critical_damage = Stat.new(base.critical_damage)
+	stats.fire_damage = Stat.new(base.fire_damage)
+	stats.fire_chance = Stat.new(base.fire_chance)
 	return stats
 
 
