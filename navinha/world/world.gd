@@ -101,6 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# 1. Ativa a pausa
 			paused = true
 			%Pause.visible = true
+			%MenuButton.grab_focus()
 			get_tree().paused = true
 		elif paused == true:
 			# 1. Desativa a pausa

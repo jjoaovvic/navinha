@@ -14,3 +14,4 @@ func _on_exit_button_pressed() -> void:
 func _on_option_button_pressed() -> void:
 	%Menu.visible = false
 	%Options.visible = true
+	%BackButton.grab_focus()

@@ -126,6 +126,7 @@ offset_right = -138.0
 offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_right = NodePath("../UpgradeButton2")
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
@@ -142,6 +143,8 @@ offset_right = 100.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../UpgradeButton")
+focus_neighbor_right = NodePath("../UpgradeButton3")
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
@@ -158,6 +161,7 @@ offset_right = 336.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../UpgradeButton2")
 text = "Upgrade 1"
 script = ExtResource("4_74lek")
 
@@ -171,6 +175,7 @@ offset_bottom = 1417.0
 color = Color(0.0619267, 0.0619267, 0.061926693, 0.34901962)
 
 [node name="MenuButton" type="Button" parent="Pause" unique_id=456991644]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -182,6 +187,7 @@ offset_right = 251.5
 offset_bottom = 306.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../ExitButton")
 text = "MAIN MENU"
 
 [node name="ExitButton" type="Button" parent="Pause" unique_id=961143233]
@@ -196,6 +202,7 @@ offset_right = 146.0
 offset_bottom = 386.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../MenuButton")
 text = "EXIT GAME"
 
 [node name="Orb_manager" type="Node2D" parent="." unique_id=227400250]

@@ -31,20 +31,6 @@ grow_vertical = 2
 focus_neighbor_bottom = NodePath("../OptionButton")
 text = "START GAME"
 
-[node name="ExitButton" type="Button" parent="Menu" unique_id=1238514121]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = 160.0
-offset_right = 60.0
-offset_bottom = 235.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "EXIT"
-
 [node name="OptionButton" type="Button" parent="Menu" unique_id=146933036]
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,8 +43,24 @@ offset_right = 103.5
 offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../ExitButton")
 text = "OPTIONS"
+
+[node name="ExitButton" type="Button" parent="Menu" unique_id=1238514121]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 160.0
+offset_right = 60.0
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../OptionButton")
+text = "EXIT"
 
 [node name="Options" type="CanvasLayer" parent="." unique_id=432716072]
 unique_name_in_owner = true
@@ -66,6 +68,7 @@ visible = false
 script = ExtResource("2_mu8pm")
 
 [node name="BackButton" type="Button" parent="Options" unique_id=435632388]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -93,6 +96,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Menu/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="Menu/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Options/BackButton" to="Options" method="_on_back_button_pressed"]
