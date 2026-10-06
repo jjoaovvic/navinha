@@ -12,7 +12,7 @@ var drop_rate: float
 
 func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * stats.speed.value
+	velocity = direction * stats.of(ShipStat.Id.SPEED).value
 	move_and_slide()
 
 func _on_health_component_health_depleted() -> void:

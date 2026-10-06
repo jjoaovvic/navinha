@@ -22,10 +22,10 @@ signal died
 
 func _ready() -> void:
 	bullet_timer.wait_time = stats.shot_interval()
-	boost_bar.max_value = stats.max_boost.value
+	boost_bar.max_value = stats.of(ShipStat.Id.MAX_BOOST).value
 	boost_bar.value = boost_bar.max_value
-	stats.fire_rate.changed.connect(_on_fire_rate_changed)
-	stats.max_boost.changed.connect(_on_max_boost_changed)
+	stats.of(ShipStat.Id.FIRE_RATE).changed.connect(_on_fire_rate_changed)
+	stats.of(ShipStat.Id.MAX_BOOST).changed.connect(_on_max_boost_changed)
 
 func get_input() -> Vector2:
 	var direction := Input.get_vector("left", "right", "up", "down")
@@ -45,23 +45,23 @@ func create_bullet(gun):
 	var gun_marker: Marker2D = get_node("Gun"+str(gun))
 	new_bullet.global_transform = gun_marker.global_transform
 	new_bullet.global_rotation = gun_marker.global_rotation
-	if randf() <= stats.critical_chance.value:
-		new_bullet.damage = stats.bullet_damage.value * stats.critical_damage.value
+	if randf() <= stats.of(ShipStat.Id.CRITICAL_CHANCE).value:
+		new_bullet.damage = stats.of(ShipStat.Id.BULLET_DAMAGE).value * stats.of(ShipStat.Id.CRITICAL_DAMAGE).value
 		new_bullet.modulate = Color.YELLOW
 	else:
-		new_bullet.damage = stats.bullet_damage.value
-	if randf() <= stats.fire_chance.value:
-		new_bullet.fire_damage += stats.fire_damage.value
+		new_bullet.damage = stats.of(ShipStat.Id.BULLET_DAMAGE).value
+	if randf() <= stats.of(ShipStat.Id.FIRE_CHANCE).value:
+		new_bullet.fire_damage += stats.of(ShipStat.Id.FIRE_DAMAGE).value
 		new_bullet.modulate = Color.RED
-	new_bullet.speed = stats.bullet_speed.value
-	new_bullet.range = stats.bullet_range.value
+	new_bullet.speed = stats.of(ShipStat.Id.BULLET_SPEED).value
+	new_bullet.range = stats.of(ShipStat.Id.BULLET_RANGE).value
 	add_sibling(new_bullet)
 
 func process_movement(delta: float, move_direction: Vector2) ->void:
-	var target_velocity:Vector2 = move_direction * stats.speed.value * boost_effect
-	velocity = (velocity.lerp(target_velocity, delta * stats.acceleration.value) 
+	var target_velocity:Vector2 = move_direction * stats.of(ShipStat.Id.SPEED).value * boost_effect
+	velocity = (velocity.lerp(target_velocity, delta * stats.of(ShipStat.Id.ACCELERATION).value) 
 		if target_velocity else
-		velocity.lerp(target_velocity, delta * stats.friction.value))
+		velocity.lerp(target_velocity, delta * stats.of(ShipStat.Id.FRICTION).value))
 
 func _physics_process(delta: float) -> void:
 	var move_direction: Vector2
@@ -83,14 +83,14 @@ func _physics_process(delta: float) -> void:
 		bullet_timer.start()
 		
 	if Input.is_action_pressed("boost"):
-		boost_effect = stats.boost_multiplier.value
-		boost_bar.value -= delta * stats.boost_drain.value
+		boost_effect = stats.of(ShipStat.Id.BOOST_MULTIPLIER).value
+		boost_bar.value -= delta * stats.of(ShipStat.Id.BOOST_DRAIN).value
 		can_boost_recovery = false
 		boost_timer.start()
 	else:
 		boost_effect = 1
 		if can_boost_recovery:
-			boost_bar.value += delta * stats.boost_recovery.value
+			boost_bar.value += delta * stats.of(ShipStat.Id.BOOST_RECOVERY).value
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
@@ -108,7 +108,7 @@ func _on_fire_rate_changed() -> void:
 	bullet_timer.wait_time = stats.shot_interval()
 
 func _on_max_boost_changed() -> void:
-	boost_bar.max_value = stats.max_boost.value
+	boost_bar.max_value = stats.of(ShipStat.Id.MAX_BOOST).value
 
 func _on_boost_timer_timeout() -> void:
 	can_boost_recovery = true

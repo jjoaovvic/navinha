@@ -26,13 +26,8 @@ func _render(stats: ShipStats) -> String:
 	lines.append("STATS  [F3]")
 	var health := stats.health
 	lines.append("%-16s %7.1f / %.1f" % ["health", health.current, health.maximum.value])
-	lines.append(_stat_line("max_health", health.maximum))
-	lines.append(_stat_line("regen", health.regen))
-	# Reflexao para que um stat novo apareca sozinho, sem editar este arquivo.
-	for prop in stats.get_property_list():
-		var value = stats.get(prop["name"])
-		if value is Stat:
-			lines.append(_stat_line(prop["name"], value))
+	for id: int in ShipStat.Id.values():
+		lines.append(_stat_line(ShipStat.name_of(id as ShipStat.Id), stats.of(id as ShipStat.Id)))
 	return "\n".join(lines)
 
 

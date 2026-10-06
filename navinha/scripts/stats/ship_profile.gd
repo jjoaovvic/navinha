@@ -1,24 +1,20 @@
-extends Resource
+@tool
+extends StatSheet
 class_name ShipProfile
 
-## Valores base do casco. Equipamento e upgrade nunca escrevem aqui.
+static var _cached_names := PackedStringArray()
 
-@export var max_health := 1.0
-@export var health_regen := 0.0
-@export var speed := 0.0
-@export var acceleration := 0.0
-@export var friction := 0.0
-@export var fire_rate := 0.0
-@export var max_boost := 0.0
-@export var boost_drain := 0.0
-@export var boost_recovery := 0.0
-@export var boost_multiplier := 1.0
 
-@export var bullet_damage := 1.0
-@export var bullet_speed := 1500.0
-@export var bullet_range := 800.0
+func _names() -> PackedStringArray:
+	if _cached_names.is_empty():
+		for id: int in ShipStat.Id.values():
+			_cached_names.append(ShipStat.name_of(id as ShipStat.Id))
+	return _cached_names
 
-@export var critical_chance := 0.01
-@export var critical_damage := 1.5
-@export var fire_damage := 1.0
-@export var fire_chance := 1.0
+
+func _default_at(index: int) -> float:
+	return ShipStat.default_of(index as ShipStat.Id)
+
+
+func base(id: ShipStat.Id) -> float:
+	return value_at(id)
