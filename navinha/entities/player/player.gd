@@ -22,10 +22,9 @@ signal died
 
 func _ready() -> void:
 	bullet_timer.wait_time = stats.shot_interval()
-	boost_bar.max_value = stats.of(ShipStat.Id.MAX_BOOST).value
-	boost_bar.value = boost_bar.max_value
+	_on_boost_changed(stats.boost.current, stats.boost.maximum.value)
 	stats.of(ShipStat.Id.FIRE_RATE).changed.connect(_on_fire_rate_changed)
-	stats.of(ShipStat.Id.MAX_BOOST).changed.connect(_on_max_boost_changed)
+	stats.boost.changed.connect(_on_boost_changed)
 
 func get_input() -> Vector2:
 	var direction := Input.get_vector("left", "right", "up", "down")
@@ -84,13 +83,13 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("boost"):
 		boost_effect = stats.of(ShipStat.Id.BOOST_MULTIPLIER).value
-		boost_bar.value -= delta * stats.of(ShipStat.Id.BOOST_DRAIN).value
+		stats.boost.drain(delta * stats.of(ShipStat.Id.BOOST_DRAIN).value)
 		can_boost_recovery = false
 		boost_timer.start()
 	else:
 		boost_effect = 1
 		if can_boost_recovery:
-			boost_bar.value += delta * stats.of(ShipStat.Id.BOOST_RECOVERY).value
+			stats.boost.restore(delta * stats.boost.regen.value)
 
 func _on_bullet_time_timeout() -> void:
 	can_shoot = 1
@@ -107,8 +106,9 @@ func _on_health_component_health_changed(current: float, maximum: float) -> void
 func _on_fire_rate_changed() -> void:
 	bullet_timer.wait_time = stats.shot_interval()
 
-func _on_max_boost_changed() -> void:
-	boost_bar.max_value = stats.of(ShipStat.Id.MAX_BOOST).value
+func _on_boost_changed(current: float, maximum: float) -> void:
+	boost_bar.max_value = maximum
+	boost_bar.value = current
 
 func _on_boost_timer_timeout() -> void:
 	can_boost_recovery = true

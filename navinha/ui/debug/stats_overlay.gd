@@ -26,6 +26,7 @@ func _render(stats: ShipStats) -> String:
 	lines.append("STATS  [F3]")
 	var health := stats.health
 	lines.append("%-16s %7.1f / %.1f" % ["health", health.current, health.maximum.value])
+	lines.append("%-16s %7.1f / %.1f" % ["boost", stats.boost.current, stats.boost.maximum.value])
 	for id: int in ShipStat.Id.values():
 		lines.append(_stat_line(ShipStat.name_of(id as ShipStat.Id), stats.of(id as ShipStat.Id)))
 	return "\n".join(lines)

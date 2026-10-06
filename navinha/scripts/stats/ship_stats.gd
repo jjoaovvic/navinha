@@ -2,6 +2,7 @@ extends RefCounted
 class_name ShipStats
 
 var health: Pool
+var boost: Pool
 var _stats: Array[Stat] = []
 
 
@@ -10,6 +11,7 @@ static func from_profile(profile: ShipProfile) -> ShipStats:
 	var stats := ShipStats.new()
 	stats._stats = base.build_stats()
 	stats.health = Pool.new(stats.of(ShipStat.Id.MAX_HEALTH), stats.of(ShipStat.Id.HEALTH_REGEN))
+	stats.boost = Pool.new(stats.of(ShipStat.Id.MAX_BOOST), stats.of(ShipStat.Id.BOOST_RECOVERY))
 	return stats
 
 
