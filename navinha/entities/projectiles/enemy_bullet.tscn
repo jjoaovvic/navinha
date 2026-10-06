@@ -10,6 +10,7 @@ size = Vector2(7, 8)
 top_level = true
 collision_layer = 0
 script = ExtResource("1_e1r8m")
+spawn_grace = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=68627724]
 rotation = 1.5707964

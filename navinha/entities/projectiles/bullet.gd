@@ -3,6 +3,7 @@ class_name Bullet
 
 @export var damage: float = 1.0
 @export var speed: float = 1000.0
+@export var spawn_grace: float = 0.03
 var range: float = 1200.0
 var fire_damage: float = 0.0
 var start_position := Vector2.ZERO
@@ -12,8 +13,16 @@ var traits: Array[ProjectileTrait] = []
 
 func _ready() -> void:
 	start_position = position
+	if spawn_grace > 0.0:
+		monitoring = false
+		get_tree().create_timer(spawn_grace).timeout.connect(_end_spawn_grace)
 	for t in traits:
 		t.on_spawn(self)
+
+
+func _end_spawn_grace() -> void:
+	if is_instance_valid(self):
+		monitoring = true
 
 
 func _physics_process(delta: float) -> void:
