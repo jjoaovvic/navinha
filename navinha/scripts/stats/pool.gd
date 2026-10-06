@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Health
+class_name Pool
 
 signal changed(current: float, maximum: float)
 signal depleted
@@ -22,15 +22,14 @@ func _init(p_maximum: Stat, p_regen: Stat) -> void:
 	maximum.changed.connect(_on_maximum_changed)
 
 
-func take_damage(amount: float) -> void:
+func drain(amount: float) -> void:
 	current -= amount
 
 
-func heal(amount: float) -> void:
+func restore(amount: float) -> void:
 	current += amount
 
 
-## Quanto regenerar num intervalo. Quem chama decide quando.
 func regenerate(delta: float) -> void:
 	if current > 0.0 and regen.value > 0.0:
 		current += regen.value * delta

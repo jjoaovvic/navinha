@@ -4,7 +4,7 @@ class_name HealthComponent
 signal health_changed(current: float, maximum: float)
 signal health_depleted
 
-var health: Health
+var health: Pool
 var on_fire:bool = false
 var fire_damage:float = 0.0
 
@@ -15,7 +15,7 @@ static func of(node: Node) -> HealthComponent:
 	return node.get_node_or_null(^"HealthComponent") as HealthComponent
 
 func _ready() -> void:
-	assert(health != null, "HealthComponent nao recebeu um Health")
+	assert(health != null, "HealthComponent nao recebeu um Pool")
 	health.changed.connect(_on_changed)
 	health.depleted.connect(_on_depleted)
 	health_changed.emit(health.current, health.maximum.value)
@@ -28,16 +28,16 @@ func _process(delta: float) -> void:
 		fire_timer.start()
 
 func take_fire_damage(amount:float) -> void:
-	health.take_damage(fire_damage)
+	health.drain(fire_damage)
 	object.modulate = Color.RED
 	await get_tree().create_timer(0.2).timeout
 	object.modulate = Color.WHITE
 
 func take_damage(amount: float) -> void:
-	health.take_damage(amount)
+	health.drain(amount)
 
 func life_gain(amount: float) -> void:
-	health.heal(amount)
+	health.restore(amount)
 
 func _on_changed(current: float, maximum: float) -> void:
 	health_changed.emit(current, maximum)
