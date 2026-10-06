@@ -7,7 +7,8 @@ func _on_body_entered(body: Node2D) -> void:
 	queue_free()
 	
 func explosion() -> void:
-	var enemies = $ExplosionArea.get_overlapping_bodies()
+	var enemies := ($ExplosionArea as Area2D).get_overlapping_bodies()
 	for enemy in enemies:
-		if enemy.has_node("HealthComponent"):
-			enemy.get_node("HealthComponent").take_damage(damage)
+		var health := HealthComponent.of(enemy)
+		if health != null:
+			health.take_damage(damage)

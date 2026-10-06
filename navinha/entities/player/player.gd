@@ -1,9 +1,11 @@
 extends CharacterBody2D
+class_name Player
 
 @export var stats_component: StatsComponent
 
-@onready var boost_bar = %Player_Boost
-@onready var boost_timer = %Boost_Timer
+@onready var boost_bar: ProgressBar = %Player_Boost
+@onready var boost_timer: Timer = %Boost_Timer
+@onready var bullet_timer: Timer = %Bullet_Timer
 @onready var stats: ShipStats = stats_component.stats
 
 
@@ -19,7 +21,7 @@ var bullet_qnt:int = 2
 signal died
 
 func _ready() -> void:
-	%Bullet_Timer.wait_time = stats.shot_interval()
+	bullet_timer.wait_time = stats.shot_interval()
 	boost_bar.max_value = stats.max_boost.value
 	boost_bar.value = boost_bar.max_value
 	stats.fire_rate.changed.connect(_on_fire_rate_changed)
@@ -40,8 +42,9 @@ func shoot():
 func create_bullet(gun):
 	const BULLET = preload("res://entities/projectiles/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
-	new_bullet.global_transform = get_node_or_null("Gun"+str(gun)).global_transform
-	new_bullet.global_rotation = get_node_or_null("Gun"+str(gun)).global_rotation
+	var gun_marker: Marker2D = get_node("Gun"+str(gun))
+	new_bullet.global_transform = gun_marker.global_transform
+	new_bullet.global_rotation = gun_marker.global_rotation
 	if randf() <= stats.critical_chance.value:
 		new_bullet.damage = stats.bullet_damage.value * stats.critical_damage.value
 		new_bullet.modulate = Color.YELLOW
@@ -77,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot == 1:
 		shoot()
 		can_shoot = 0
-		%Bullet_Timer.start()
+		bullet_timer.start()
 		
 	if Input.is_action_pressed("boost"):
 		boost_effect = stats.boost_multiplier.value
@@ -97,11 +100,12 @@ func _on_health_component_health_depleted() -> void:
 
 
 func _on_health_component_health_changed(current: float, maximum: float) -> void:
-	%Player_Health.max_value = maximum
-	%Player_Health.value = current
+	var health_bar := %Player_Health as ProgressBar
+	health_bar.max_value = maximum
+	health_bar.value = current
 
 func _on_fire_rate_changed() -> void:
-	%Bullet_Timer.wait_time = stats.shot_interval()
+	bullet_timer.wait_time = stats.shot_interval()
 
 func _on_max_boost_changed() -> void:
 	boost_bar.max_value = stats.max_boost.value
@@ -112,9 +116,9 @@ func _on_boost_timer_timeout() -> void:
 func xp_gain(gain) -> void:
 	xp += gain
 	if xp == 5:
-		%Upgrade.visible = true
-		%UpgradeButton.grab_focus()
-		var world = get_parent().get_parent()
+		(%Upgrade as CanvasLayer).visible = true
+		(%UpgradeButton as Button).grab_focus()
+		var world := get_parent().get_parent() as World
 		world.set_upgrade()
 		get_tree().paused = true
 		xp = 0

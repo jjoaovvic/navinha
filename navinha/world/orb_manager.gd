@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = get_tree().get_root().find_child("Player", true, false)
+@onready var player: Player = get_tree().get_root().find_child("Player", true, false)
 @export var orbit_radius: float = 100.0
 @export var orbit_speed: float = 2.0
 @export var orb_scene: PackedScene
@@ -11,7 +11,7 @@ var orbs: Array[Node2D] = []
 
 func _ready() -> void:
 	for i in range(total_orbs):
-		var orb = orb_scene.instantiate()
+		var orb: Node2D = orb_scene.instantiate()
 		add_child(orb)
 		orbs.append(orb)
 

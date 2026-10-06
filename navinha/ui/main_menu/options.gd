@@ -1,7 +1,11 @@
 extends CanvasLayer
 
+@onready var menu: CanvasLayer = %Menu
+@onready var options: CanvasLayer = %Options
+@onready var start_button: Button = %StartButton
+
 
 func _on_back_button_pressed() -> void:
-	%Menu.visible = true
-	%Options.visible = false
-	%StartButton.grab_focus()
+	menu.visible = true
+	options.visible = false
+	start_button.grab_focus()

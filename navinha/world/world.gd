@@ -1,9 +1,15 @@
 extends Node2D
+class_name World
 
 @export var wave_quantity:int
 var wave_in_progress : bool = false
 var current_wave_number = 1
 var paused:bool = false
+@onready var game_over: CanvasLayer = %GameOver
+@onready var upgrade: CanvasLayer = %Upgrade
+@onready var pause: CanvasLayer = %Pause
+@onready var pause_menu_button: Button = %MenuButton
+@onready var player: Player = %Player
 
 func _ready() -> void:
 	%GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -45,9 +51,9 @@ func wave_call(wave):
 	current_wave.visible = true
 	var spawners = current_wave.get_children()
 	for spawner in spawners:
-		spawner.spawn()
+		(spawner as Spawner).spawn()
 
-func upgrade_buttons() -> Array:
+func upgrade_buttons() -> Array[UpgradeButton]:
 	return [%UpgradeButton, %UpgradeButton2, %UpgradeButton3]
 
 func set_upgrade() -> void:
@@ -60,13 +66,13 @@ func set_upgrade() -> void:
 	#spawn_enemy()
 
 func _on_player_died() -> void:
-	%GameOver.visible = true
+	game_over.visible = true
 	get_tree().paused = true
 
-func _on_upgrade_button_pressed(button: Button) -> void:
-	button.call_upgrade(%Player.stats)
+func _on_upgrade_button_pressed(button: UpgradeButton) -> void:
+	button.call_upgrade(player.stats)
 	get_tree().paused = false
-	%Upgrade.visible = false
+	upgrade.visible = false
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
@@ -83,7 +89,7 @@ func wave_creator(enemy_number:int, wave:int) -> void:
 	wave_group.visible = false
 	%Game.add_child(wave_group)
 	for i in enemy_number:
-		var spawner = load("res://entities/spawner/spawner.tscn").instantiate()
+		var spawner: Node2D = (load("res://entities/spawner/spawner.tscn") as PackedScene).instantiate()
 		var random_x = randf_range(0, screen_size.x)
 		var random_y = randf_range(0, screen_size.y)
 		spawner.global_position = Vector2(random_x, random_y)
@@ -100,13 +106,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if paused == false:
 			# 1. Ativa a pausa
 			paused = true
-			%Pause.visible = true
-			%MenuButton.grab_focus()
+			pause.visible = true
+			pause_menu_button.grab_focus()
 			get_tree().paused = true
 		elif paused == true:
 			# 1. Desativa a pausa
 			paused = false
-			%Pause.visible = false
+			pause.visible = false
 			get_tree().paused = false
 
 

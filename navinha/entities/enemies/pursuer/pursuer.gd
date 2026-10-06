@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var xp_value:int = 0
 @export var HealthComponent : HealthComponent
 @export var stats_component: StatsComponent
-@onready var player = get_tree().get_root().find_child("Player", true, false)
+@onready var player: Player = get_tree().get_root().find_child("Player", true, false)
 
 @onready var stats: ShipStats = stats_component.stats
 var drop_rate: float
@@ -23,6 +23,7 @@ func _on_health_component_health_depleted() -> void:
 	queue_free()
 
 func spawn_life_pill() -> void:
-	var pill = preload("res://entities/pickups/life_pill/life_pill.tscn").instantiate()
+	const LIFE_PILL: PackedScene = preload("res://entities/pickups/life_pill/life_pill.tscn")
+	var pill: Node2D = LIFE_PILL.instantiate()
 	pill.global_position = global_position
 	get_tree().root.add_child(pill)

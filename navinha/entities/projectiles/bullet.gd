@@ -18,6 +18,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	queue_free()
-	if body.has_node("HealthComponent"):
-		body.get_node("HealthComponent").take_damage(damage)
-		body.get_node("HealthComponent").fire_damage = fire_damage
+	var health := HealthComponent.of(body)
+	if health != null:
+		health.take_damage(damage)
+		health.fire_damage = fire_damage

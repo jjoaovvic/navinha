@@ -6,6 +6,5 @@ var collected = false
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not collected:
 		collected = true
-		var health_component = body.get_node("HealthComponent")
-		health_component.life_gain(life)
+		HealthComponent.of(body).life_gain(life)
 		call_deferred("queue_free")

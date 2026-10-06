@@ -8,8 +8,9 @@ class_name StatsOverlay
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == toggle_key:
+	var key := event as InputEventKey
+	if key != null and key.pressed and not key.echo:
+		if key.keycode == toggle_key:
 			visible = not visible
 			get_viewport().set_input_as_handled()
 

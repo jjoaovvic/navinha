@@ -8,8 +8,11 @@ var health: Health
 var on_fire:bool = false
 var fire_damage:float = 0.0
 
-@onready var fire_timer = %FireTimer
-@onready var object = get_parent()
+@onready var fire_timer: Timer = %FireTimer
+@onready var object: CanvasItem = get_parent()
+
+static func of(node: Node) -> HealthComponent:
+	return node.get_node_or_null(^"HealthComponent") as HealthComponent
 
 func _ready() -> void:
 	assert(health != null, "HealthComponent nao recebeu um Health")

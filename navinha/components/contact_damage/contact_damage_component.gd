@@ -4,5 +4,6 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	get_parent().queue_free()
-	if body.has_node("HealthComponent"):
-		body.get_node("HealthComponent").take_damage(damage)
+	var health := HealthComponent.of(body)
+	if health != null:
+		health.take_damage(damage)

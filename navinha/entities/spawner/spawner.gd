@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name Spawner
 
 @export var load_enemy : PackedScene
 @onready var timer : Timer = %SpawnTime
@@ -9,8 +10,8 @@ extends Sprite2D
 var enemy_pool : Array[PackedScene] = []
 
 func _ready() -> void:
-	pursuer = preload("res://entities/enemies/pursuer/pursuer.tscn")
-	shooter = preload("res://entities/enemies/shooter/shooter.tscn")
+	pursuer = load("res://entities/enemies/pursuer/pursuer.tscn")
+	shooter = load("res://entities/enemies/shooter/shooter.tscn")
 	enemy_pool = [pursuer, shooter]
 
 func spawn():
