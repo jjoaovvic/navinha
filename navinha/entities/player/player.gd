@@ -40,7 +40,7 @@ func shoot():
 
 func create_bullet(gun):
 	const BULLET = preload("res://entities/projectiles/bullet.tscn")
-	var new_bullet = BULLET.instantiate()
+	var new_bullet := BULLET.instantiate() as Bullet
 	var gun_marker: Marker2D = get_node("Gun"+str(gun))
 	new_bullet.global_transform = gun_marker.global_transform
 	new_bullet.global_rotation = gun_marker.global_rotation
