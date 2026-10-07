@@ -10,6 +10,7 @@ var paused:bool = false
 @onready var pause: CanvasLayer = %Pause
 @onready var pause_menu_button: Button = %MenuButton
 @onready var player: Player = %Player
+@onready var wave_manager: WaveManager = %WaveManager
 
 func _ready() -> void:
 	%GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -17,41 +18,11 @@ func _ready() -> void:
 	%Pause.process_mode = Node.PROCESS_MODE_ALWAYS
 	for button in upgrade_buttons():
 		button.pressed.connect(_on_upgrade_button_pressed.bind(button))
-	for wave in wave_quantity:
-		wave_creator(3, wave + 1)
-	wave_call(current_wave_number)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("restart"):
 		_on_restart_button_pressed()
 
-
-	if not wave_in_progress:
-		return
-	var wave = %Game.get_node_or_null("Wave " + str(current_wave_number))
-	if wave == null:
-		return
-	if wave.get_children().is_empty():
-		wave_in_progress = false
-		current_wave_number += 1
-		wave_call(current_wave_number)
-
-#func spawn_enemy():
-	#var pursuer = preload("res://entities/enemies/pursuer/pursuer.tscn").instantiate()
-	#%Spawner.progress_ratio = randf()
-	#pursuer.global_position = %Spawner.global_position
-	#add_child(pursuer)
-
-func wave_call(wave):
-	wave_in_progress = true
-	var current_wave = %Game.get_node_or_null("Wave " + str(wave))
-	if current_wave == null:
-		print("Ganhou")
-		return
-	current_wave.visible = true
-	var spawners = current_wave.get_children()
-	for spawner in spawners:
-		(spawner as Spawner).spawn()
 
 func upgrade_buttons() -> Array[UpgradeButton]:
 	return [%UpgradeButton, %UpgradeButton2, %UpgradeButton3]
@@ -61,9 +32,6 @@ func set_upgrade() -> void:
 	var buttons := upgrade_buttons()
 	for i in buttons.size():
 		buttons[i].set_upgrade(picks[i])
-
-#func _on_pursuer_timer_timeout() -> void:
-	#spawn_enemy()
 
 func _on_player_died() -> void:
 	game_over.visible = true
@@ -82,25 +50,6 @@ func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
-func wave_creator(enemy_number:int, wave:int) -> void:
-	var wave_group: Node2D = Node2D.new()
-	var screen_size = get_viewport_rect().size
-	wave_group.name = "Wave " + str(wave)
-	wave_group.visible = false
-	%Game.add_child(wave_group)
-	for i in enemy_number:
-		var spawner: Node2D = (load("res://entities/spawner/spawner.tscn") as PackedScene).instantiate()
-		var random_x = randf_range(0, screen_size.x)
-		var random_y = randf_range(0, screen_size.y)
-		spawner.global_position = Vector2(random_x, random_y)
-		wave_group.add_child(spawner)
-
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action_pressed("pause"):
-		#paused = !paused
-		#%Pause.visible = paused
-		#get_tree().paused = paused
-		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if paused == false:

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdbg0stat50v" path="res://ui/debug/stats_overlay.tscn" id="5_dbg"]
 [ext_resource type="PackedScene" uid="uid://d11sokdnimlus" path="res://entities/projectiles/orb.tscn" id="6_fn3g3"]
 [ext_resource type="Script" uid="uid://b3665t0mck2lf" path="res://world/orb_manager.gd" id="6_sc4t8"]
+[ext_resource type="Script" uid="uid://bprqr58ddmp4u" path="res://world/wave_manager.gd" id="8_ai45w"]
 
 [sub_resource type="Curve2D" id="Curve2D_j5jx5"]
 _data = {
@@ -210,6 +211,12 @@ position = Vector2(228, 739)
 script = ExtResource("6_sc4t8")
 orb_scene = ExtResource("6_fn3g3")
 total_orbs = 0
+
+[node name="WaveManager" type="Node2D" parent="." unique_id=423636969]
+unique_name_in_owner = true
+script = ExtResource("8_ai45w")
+wave_quantity = 3
+infinite_waves = true
 
 [connection signal="died" from="Game/Player" to="." method="_on_player_died"]
 [connection signal="timeout" from="Game/PursuerTimer" to="." method="_on_pursuer_timer_timeout"]
